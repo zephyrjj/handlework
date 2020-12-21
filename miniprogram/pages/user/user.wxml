@@ -4,14 +4,17 @@
     <view class="center">
       <view class="user">
 
-        <view class="type" wx:if="{{hasUserInfo==false}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-          <button>未登录</button>
+        <view class="type" wx:if="{{isLogin==false}}">
+          <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">未登录</button>
         </view>
         <view class="type" wx:else>
           <view class="img">
             <open-data type="userAvatarUrl"></open-data>
           </view>
-          <open-data type="userNickName"></open-data>
+          <view class="nickname">
+            <open-data type="userNickName"></open-data>
+          </view>
+         
         </view>
       </view>
       <view class="myclass">

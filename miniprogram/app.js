@@ -13,7 +13,46 @@ App({
         traceUser: true,
       })
     }
+<<<<<<< Updated upstream
 
     this.globalData = {}
+=======
+<<<<<<< Updated upstream
+     this.checkLogin()
+    this.globalData = {}
+  },
+  checkLogin: function () {
+    const db = wx.cloud.database()
+    const user = db.collection('User')
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        user.where({
+          _openid: res.openid
+        }).get({
+          success: res => {
+            if(res.data.length!=0){
+             this.globalData.userInfo = res.data[0]
+            }else{
+              this.globalData.userInfo = []
+            }
+          }
+        })
+      }
+    })
+
+=======
+
+    this.globalData = {
+      //用户id
+      userID:'',
+      //用户信息
+      userInfo:null,
+      //登录状态
+      isLogin:false
+    }
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   }
 })

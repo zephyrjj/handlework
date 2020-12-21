@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLogin:false
   },
   myclass(e){
    
@@ -52,22 +53,25 @@ Page({
       wx.getUserInfo({
         success: res => {
           app.globalData.userInfo = res.userInfo
-          this.setData({
+          that.setData({
             userInfo: res.userInfo,
-            hasUserInfo: true
+            isLogin: false
           })
+          
         }
       })
+      console.log(that.data.isLogin)
       console.log("3")
       console.log(app.globalData.userInfo)
     }
   },
   getUserInfo: function(e) {
     console.log(e)
+    console.log("11111")
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      isLogin: true
     })
   },
 
