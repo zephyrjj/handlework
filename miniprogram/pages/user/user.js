@@ -59,6 +59,7 @@ Page({
         }
       })
       console.log("3")
+      console.log(app.globalData.userInfo)
     }
   },
   getUserInfo: function(e) {

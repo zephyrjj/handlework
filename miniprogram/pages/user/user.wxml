@@ -3,14 +3,15 @@
   <view class="top">
     <view class="center">
       <view class="user">
-        <view class="img">
-          <image src="{{userInfo.avatarUrl}}"></image>
-        </view>
+
         <view class="type" wx:if="{{hasUserInfo==false}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-          <text>未登录</text>
+          <button>未登录</button>
         </view>
         <view class="type" wx:else>
-          <text>{{userInfo.nickName}}</text>
+          <view class="img">
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <open-data type="userNickName"></open-data>
         </view>
       </view>
       <view class="myclass">
@@ -38,6 +39,6 @@
     <text>下载作业</text>
   </view>
   <view class="gggif" wx:if="{{hasUserInfo==true}}">
-    <image src="https://pic1.zhimg.com/50/v2-278b4f230d293e9800f872594506b3f8_hd.webp?source=1940ef5c" ></image>
+    <image src="https://pic1.zhimg.com/50/v2-278b4f230d293e9800f872594506b3f8_hd.webp?source=1940ef5c"></image>
   </view>
 </view>
