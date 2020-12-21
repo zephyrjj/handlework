@@ -57,6 +57,7 @@ page{
   align-items: center;
   margin-bottom:10px;
   margin-left: 20px;
+  
 }
 .myclass{
   display: flex;
