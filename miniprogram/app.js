@@ -13,11 +13,7 @@ App({
         traceUser: true,
       })
     }
-<<<<<<< Updated upstream
 
-    this.globalData = {}
-=======
-<<<<<<< Updated upstream
      this.checkLogin()
     this.globalData = {}
   },
@@ -42,17 +38,5 @@ App({
       }
     })
 
-=======
-
-    this.globalData = {
-      //用户id
-      userID:'',
-      //用户信息
-      userInfo:null,
-      //登录状态
-      isLogin:false
-    }
->>>>>>> Stashed changes
->>>>>>> Stashed changes
   }
 })
