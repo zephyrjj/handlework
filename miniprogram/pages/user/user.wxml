@@ -41,7 +41,7 @@
     <image src="/images/icon/download.png"></image>
     <text>下载作业</text>
   </view>
-  <view class="gggif" wx:if="{{hasUserInfo==true}}">
+  <view class="gggif" wx:if="{{isLogin==true}}">
     <image src="https://pic1.zhimg.com/50/v2-278b4f230d293e9800f872594506b3f8_hd.webp?source=1940ef5c"></image>
   </view>
 </view>
