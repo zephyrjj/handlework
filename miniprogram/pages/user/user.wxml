@@ -1,0 +1,43 @@
+<!--用户信息-->
+<view>
+  <view class="top">
+    <view class="center">
+      <view class="user">
+        <view class="img">
+          <image src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <view class="type" wx:if="{{hasUserInfo==false}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          <text>未登录</text>
+        </view>
+        <view class="type" wx:else>
+          <text>{{userInfo.nickName}}</text>
+        </view>
+      </view>
+      <view class="myclass">
+        <text>我的班级</text>
+        <view class="change" bindtap="change">
+          修改资料>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!--功能-->
+<view class="function">
+  <view class="item" bindtap="myclass">
+    <image src="/images/icon/myclass.png"></image>
+    <text>我的班级</text>
+  </view>
+  <view class="item" bindtap="homework">
+    <image src="/images/icon/homework.png"></image>
+    <text>我的作业</text>
+  </view>
+  <view class="item" bindtap="download">
+    <image src="/images/icon/download.png"></image>
+    <text>下载作业</text>
+  </view>
+  <view class="gggif" wx:if="{{hasUserInfo==true}}">
+    <image src="https://pic1.zhimg.com/50/v2-278b4f230d293e9800f872594506b3f8_hd.webp?source=1940ef5c" ></image>
+  </view>
+</view>

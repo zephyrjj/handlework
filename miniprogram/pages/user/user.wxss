@@ -1,0 +1,100 @@
+page{
+  background-color: white;
+}
+.top {
+  width: 100%;
+  height: 180px;
+  background: #ffcccc;
+  padding-top: 15px;
+  position: relative;
+}
+
+.center {
+  width: 90%;
+  height: 150px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  border-radius: 15px;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  height: 80px;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  border-bottom: 1px solid #EEEEEE;
+}
+
+.img {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.img image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.img .user_head {
+  width: 100%;
+  height: 100%;
+}
+
+.type {
+  display: flex;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+.myclass{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.change{
+  margin-left: 60px;
+}
+.di{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  width: 300px;
+
+}
+
+.item{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #EEEEEE;
+}
+.item image{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 20rpx;
+}
+.item text{
+
+  color: #7F7F7F;
+  align-items: center;
+  justify-content: center;
+}
+.gggif{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+}
+.gggif image{
+  height: 180px;
+  width: 200px;
+}
+
+
