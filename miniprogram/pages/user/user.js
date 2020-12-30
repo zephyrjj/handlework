@@ -27,7 +27,6 @@ Page({
     app.userInfoCallback = userInfo=>{
       console.log(userInfo)
     if (userInfo != "empty") {
-      console.log('查到记录')
       this.setData({
         isLogin: true
       })
