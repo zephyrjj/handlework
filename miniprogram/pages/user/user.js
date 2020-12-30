@@ -24,7 +24,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
+    app.userInfoCallback = userInfo=>{
+      console.log(userInfo)
+    if (userInfo != "empty") {
+      console.log('查到记录')
       this.setData({
         isLogin: true
       })
@@ -35,7 +38,7 @@ Page({
             wx.getUserInfo({
               lang: 'zh_CN',
               success: res => {
-                let  userInfo = res.userInfo
+                let userInfo = res.userInfo
                 this.add(userInfo)
                 this.setData({
                   isLogin: true
@@ -46,6 +49,7 @@ Page({
         }
       })
     }
+  }
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
