@@ -112,7 +112,8 @@ Page({
         console.log(userInfo)
         if (userInfo != "empty") {
           this.setData({
-            isLogin: true
+            isLogin: true,
+            name:userInfo.neckname
           })
           wx.hideLoading({
             success: (res) => {
@@ -132,7 +133,8 @@ Page({
                     let userInfo = res.userInfo
                     this.add(userInfo)
                     this.setData({
-                      isLogin: true
+                      isLogin: true,
+                      name:userInfo.neckname
                     })
                   }
                 })
