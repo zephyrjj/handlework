@@ -4,8 +4,8 @@
     <view class="center">
       <view class="user">
 
-        <view class="type" wx:if="{{isLogin==false}}">
-          <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">未登录</button>
+        <view class="type" wx:if="{{!isLogin}}">
+          <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">未登录</button>
         </view>
         <view class="type" wx:else>
           <view class="img">
@@ -14,14 +14,14 @@
           <view class="nickname">
             <text>{{name}}</text>
           </view>
-         
+
         </view>
       </view>
-      <view class="myclass">
-        <text>我的班级</text>
-        <view class="change" bindtap="change">
-          修改资料>
-        </view>
+        <view class="myclass"wx:if="{{isLogin}}">
+          <text>我的班级:{{class}}</text>
+          <view class="change" bindtap="change">
+            修改资料>
+          </view>
       </view>
     </view>
 

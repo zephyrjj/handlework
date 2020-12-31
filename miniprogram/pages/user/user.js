@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: false
+    isLogin: true
   },
 
   //跳转到我的班级
@@ -157,7 +157,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let userInfo = app.globalData.userInfo
+    if (app.globalData.userInfo) {
+      this.setData({
+             class:userInfo.class,
+             name:userInfo.name
+      })
+    }
   },
 
   /**
