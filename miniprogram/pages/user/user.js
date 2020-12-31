@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: true
+    isLogin: false
   },
 
   //跳转到我的班级
@@ -40,11 +40,14 @@ Page({
     this.login()
   },
   getUserInfo: function (e) {
+    console.log(e)
     if (e.detail.userInfo) {
       this.add(e.detail.userInfo)
       this.setData({
-        isLogin: true
+        isLogin: true,
+        name:e.detail.userInfo.neckName
       })
+      
     } else {
 
       wx.showToast({
