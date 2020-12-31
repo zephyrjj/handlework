@@ -16,7 +16,7 @@
     "scopeDataCheck": false,
     "uglifyFileName": false,
     "checkInvalidKey": true,
-    "checkSiteMap": true,
+    "checkSiteMap": false,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
     "useMultiFrameRuntime": false,
@@ -54,9 +54,16 @@
     },
     "miniprogram": {
       "list": [
+       
         {
-          "name": "pages/C_name/C_name",
-          "pathName": "pages/C_name/C_name",
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/handinhomework/handinhomework",
+          "pathName": "pages/handinhomework/handinhomework",
           "query": "",
           "scene": null
         }

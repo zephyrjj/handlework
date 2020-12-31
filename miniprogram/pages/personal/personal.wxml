@@ -1,31 +1,27 @@
 <view>
-  <view class="function">
-    <view class="item"  >
-      <text>昵称</text>
-      <view class="box">
-        <input type="text" bindblur="name" placeholder="{{name}}"/>
+  <form bindsubmit="change">
+    <view class="function">
+      <view class="item">
+        <text>昵称</text>
+        <view class="box">
+          <input type="text" name="name" value="{{name}}" />
+        </view>
+      </view>
+      <view class="item">
+        <text>学号</text>
+        <view class="box">
+          <input type="text" name="sco" value="{{sco}}" />
+        </view>
+      </view>
+      <view class="item">
+        <text>手机号码</text>
+        <view class="box">
+          <input type="text" name="phone" value="{{phone}}" />
+        </view>
       </view>
     </view>
-    <view class="item" >
-      <text>学号</text>
-      <view class="box">
-        <input type="text" bindblur="sco" placeholder="{{sco}}"/>
-      </view>
+    <view class="butt">
+      <button form-type="submit">保存</button>
     </view>
-    <view class="item" >
-      <text>班级</text>
-      <view class="box">
-        <input type="text" bindblur="myclass" placeholder="{{myclass}}"/>
-      </view>
-    </view>
-    <view class="item" >
-      <text>手机号码</text>
-      <view class="box">
-        <input type="text" bindblur="phone"  placeholder="{{phone}}"/>
-      </view>
-    </view>
-  </view>
-</view>
-<view class="butt">
-  <button bindtap="change">保存</button>
+  </form>
 </view>

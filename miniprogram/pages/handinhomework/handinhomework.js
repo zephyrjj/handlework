@@ -1,41 +1,18 @@
-
-var app = getApp()
-const db = wx.cloud.database()
+// pages/handinhomework/handinhomework.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+
   },
-  
-  //保存
-  change:function(e){
-    let userInfo =  app.globalData.userInfo
-    let detail = e.detail.value
-    db.collection('User').doc(userInfo._id).update({
-      data:{
-        neckname:detail.name,
-        phone:detail.phone,
-        sco:detail.sco
-      },
-      success: res=>{
-        wx.showToast({
-          title: '修改成功',
-        })
-        userInfo.neckname = detail.name
-        userInfo.sco = detail.sco
-        userInfo.phone = detail.phone
-        app.globalData.userInfo = userInfo
-      }
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+
   },
 
   /**
@@ -49,11 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      name:app.globalData.userInfo.neckname,
-      sco:app.globalData.userInfo.sco,
-      phone:app.globalData.userInfo.phone
-    })
+
   },
 
   /**

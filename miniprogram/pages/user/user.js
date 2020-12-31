@@ -33,40 +33,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    app.userInfoCallback = userInfo=>{
-      console.log(userInfo)
-    if (userInfo != "empty") {
-      this.setData({
-        isLogin: true
-      })
-    } else {
-      wx.getSetting({
-        success: (res) => {
-          if (res.authSetting['scope.userInfo']) {
-            wx.getUserInfo({
-              lang: 'zh_CN',
-              success: res => {
-                let  userInfo = res.userInfo
-
-                this.add(userInfo)
-                this.setData({
-                  isLogin: true
-                })
-              }
-            })
-          }
-        }
-      })
-    }
-  }
+    wx.showLoading({
+      title: '请稍等',
+      mask: true
+    })
+    this.login()
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
       this.add(e.detail.userInfo)
       this.setData({
-        isLogin: true
+        isLogin: true,
+        name:e.detail.userInfo.neckName
       })
+      
     } else {
 
       wx.showToast({
@@ -74,8 +54,8 @@ Page({
         icon: 'none'
       })
     }
- 
-      
+
+
   },
   add: function (e) {
     const db = wx.cloud.database()
@@ -90,7 +70,83 @@ Page({
 
 
     })
-  
+
+  },
+  //login 
+  login:function(e){
+    if (app.globalData.userInfo) {
+      let  userInfo =  app.globalData.userInfo
+      if (userInfo != "empty") {
+        this.setData({
+          isLogin: true,
+          name:userInfo.neckname
+        })
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '欢迎回来！',
+              icon: 'none'
+            })
+          },
+        })
+      } else {
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success: res => {
+                  let userInfo = res.userInfo
+                  this.add(userInfo)
+                  this.setData({
+                    isLogin: true,
+                    name:userInfo.neckname
+                  })
+                }
+              })
+            }
+          }
+        })
+        wx.hideLoading({})
+      }
+    }else{
+      app.userInfoCallback = userInfo => {
+        console.log(userInfo)
+        if (userInfo != "empty") {
+          this.setData({
+            isLogin: true,
+            name:userInfo.neckname
+          })
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '欢迎回来！',
+                icon: 'none'
+              })
+            },
+          })
+        } else {
+          wx.getSetting({
+            success: (res) => {
+              if (res.authSetting['scope.userInfo']) {
+                wx.getUserInfo({
+                  lang: 'zh_CN',
+                  success: res => {
+                    let userInfo = res.userInfo
+                    this.add(userInfo)
+                    this.setData({
+                      isLogin: true,
+                      name:userInfo.neckname
+                    })
+                  }
+                })
+              }
+            }
+          })
+          wx.hideLoading({})
+        }
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -103,7 +159,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let userInfo = app.globalData.userInfo
+    if (app.globalData.userInfo) {
+      this.setData({
+             class:userInfo.class,
+             name:userInfo.neckname
+      })
+    }
   },
 
   /**

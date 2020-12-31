@@ -57,7 +57,10 @@ page{
   align-items: center;
   margin-bottom:10px;
   margin-left: 20px;
-  
+  font-size: 50rpx;
+}
+.nickname text{
+  letter-spacing: 0.01em;
 }
 .myclass{
   display: flex;
