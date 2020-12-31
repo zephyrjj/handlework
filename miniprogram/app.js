@@ -14,8 +14,13 @@ App({
       })
     }
 
-     this.checkLogin()
+
+
+
     this.globalData = {}
+    this.checkLogin()
+
+
   },
   checkLogin: function () {
     const db = wx.cloud.database()
@@ -28,10 +33,18 @@ App({
           _openid: res.openid
         }).get({
           success: res => {
-            if(res.data.length!=0){
-             this.globalData.userInfo = res.data[0]
-            }else{
-              this.globalData.userInfo = []
+
+
+            if (this.userInfoCallback) {
+              if (res.data.length != 0) {
+                this.globalData.userInfo = res.data[0]
+                this.userInfoCallback(res.data[0])
+              } else {
+                this.globalData.userInfo = 'empty'
+                this.userInfoCallback('empty');
+              }
+
+
             }
           }
         })

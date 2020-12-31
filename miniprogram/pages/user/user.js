@@ -8,6 +8,7 @@ Page({
   data: {
     isLogin: false
   },
+
   //跳转到我的班级
   myclass(e) {
     wx.navigateTo({
@@ -32,7 +33,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (app.globalData.userInfo) {
+
+    app.userInfoCallback = userInfo=>{
+      console.log(userInfo)
+    if (userInfo != "empty") {
+
       this.setData({
         isLogin: true
       })
@@ -43,7 +48,9 @@ Page({
             wx.getUserInfo({
               lang: 'zh_CN',
               success: res => {
+
                 let  userInfo = res.userInfo
+
                 this.add(userInfo)
                 this.setData({
                   isLogin: true
@@ -54,6 +61,7 @@ Page({
         }
       })
     }
+  }
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -66,7 +74,6 @@ Page({
       wx.showToast({
         title: '需要授权哦',
         icon: 'none'
-
       })
     }
  
