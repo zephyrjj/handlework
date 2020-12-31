@@ -161,7 +161,7 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
              class:userInfo.class,
-             name:userInfo.name
+             name:userInfo.neckname
       })
     }
   },
