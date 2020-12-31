@@ -40,7 +40,6 @@ Page({
     this.login()
   },
   getUserInfo: function (e) {
-    console.log(e)
     if (e.detail.userInfo) {
       this.add(e.detail.userInfo)
       this.setData({
