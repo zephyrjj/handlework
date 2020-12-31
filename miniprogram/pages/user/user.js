@@ -8,47 +8,36 @@ Page({
   data: {
     isLogin: false
   },
-  myclass(e) {
 
+  //跳转到我的班级
+  myclass(e) {
+    wx.navigateTo({
+      url: '/pages/myclass/myclass',
+    })
   },
+  //跳转到我的作业
   homework(e) {
 
   },
+  //跳转到下载作业
   download(e) {
 
   },
+  //跳转到修改资料
   change: function () {
-
+    wx.navigateTo({
+      url: '/pages/personal/personal',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.userInfoCallback = userInfo=>{
-      console.log(userInfo)
-    if (userInfo != "empty") {
-      this.setData({
-        isLogin: true
-      })
-    } else {
-      wx.getSetting({
-        success: (res) => {
-          if (res.authSetting['scope.userInfo']) {
-            wx.getUserInfo({
-              lang: 'zh_CN',
-              success: res => {
-                let userInfo = res.userInfo
-                this.add(userInfo)
-                this.setData({
-                  isLogin: true
-                })
-              }
-            })
-          }
-        }
-      })
-    }
-  }
+    wx.showLoading({
+      title: '请稍等',
+      mask: true
+    })
+    this.login()
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -63,6 +52,8 @@ Page({
         icon: 'none'
       })
     }
+
+
   },
   add: function (e) {
     const db = wx.cloud.database()
@@ -75,7 +66,83 @@ Page({
         class: ''
       }
 
+
     })
+
+  },
+  //login 
+  login:function(e){
+    if (app.globalData.userInfo) {
+      let  userInfo =  app.globalData.userInfo
+      if (userInfo != "empty") {
+        this.setData({
+          isLogin: true,
+          name:userInfo.neckname
+        })
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '欢迎回来！',
+              icon: 'none'
+            })
+          },
+        })
+      } else {
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success: res => {
+                  let userInfo = res.userInfo
+                  this.add(userInfo)
+                  this.setData({
+                    isLogin: true,
+                    name:userInfo.neckname
+                  })
+                }
+              })
+            }
+          }
+        })
+        wx.hideLoading({})
+      }
+    }else{
+      app.userInfoCallback = userInfo => {
+        console.log(userInfo)
+        if (userInfo != "empty") {
+          this.setData({
+            isLogin: true
+          })
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '欢迎回来！',
+                icon: 'none'
+              })
+            },
+          })
+        } else {
+          wx.getSetting({
+            success: (res) => {
+              if (res.authSetting['scope.userInfo']) {
+                wx.getUserInfo({
+                  lang: 'zh_CN',
+                  success: res => {
+                    let userInfo = res.userInfo
+                    this.add(userInfo)
+                    this.setData({
+                      isLogin: true
+                    })
+                  }
+                })
+              }
+            }
+          })
+          wx.hideLoading({})
+        }
+      }
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

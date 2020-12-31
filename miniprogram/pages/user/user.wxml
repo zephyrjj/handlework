@@ -12,7 +12,7 @@
             <open-data type="userAvatarUrl"></open-data>
           </view>
           <view class="nickname">
-            <open-data type="userNickName"></open-data>
+            <text>{{name}}</text>
           </view>
          
         </view>

@@ -12,15 +12,15 @@ App({
         // env: 'my-env-id',
         traceUser: true,
       })
-    }
-
-
     this.globalData = {}
     this.checkLogin()
-  },
+  }
+},
+
   checkLogin: function () {
     const db = wx.cloud.database()
     const user = db.collection('User')
+    
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -29,15 +29,17 @@ App({
           _openid: res.openid
         }).get({
           success: res => {
-            if (this.userInfoCallback) {
               if (res.data.length != 0) {
-                this.globalData.userInfo = res.data[0]
-                this.userInfoCallback(res.data[0])
+                this.globalData.userInfo = res.data[0] 
+                if (this.userInfoCallback) {         //确保Onlaunch比onLoad先执行
+                  this.userInfoCallback(res.data[0])
+                }
               } else {
                 this.globalData.userInfo = 'empty'
-                this.userInfoCallback('empty');
+                if (this.userInfoCallback) {
+                  this.userInfoCallback('empty');
+                }
               }
-            }
           }
         })
       }

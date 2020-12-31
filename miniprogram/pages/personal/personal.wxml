@@ -1,0 +1,27 @@
+<view>
+  <form bindsubmit="change">
+    <view class="function">
+      <view class="item">
+        <text>昵称</text>
+        <view class="box">
+          <input type="text" name="name" value="{{name}}" />
+        </view>
+      </view>
+      <view class="item">
+        <text>学号</text>
+        <view class="box">
+          <input type="text" name="sco" value="{{sco}}" />
+        </view>
+      </view>
+      <view class="item">
+        <text>手机号码</text>
+        <view class="box">
+          <input type="text" name="phone" value="{{phone}}" />
+        </view>
+      </view>
+    </view>
+    <view class="butt">
+      <button form-type="submit">保存</button>
+    </view>
+  </form>
+</view>
