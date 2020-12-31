@@ -8,17 +8,25 @@ Page({
   data: {
     isLogin: false
   },
+  //跳转到我的班级
   myclass(e) {
-
+    wx.navigateTo({
+      url: '/pages/myclass/myclass',
+    })
   },
+  //跳转到我的作业
   homework(e) {
 
   },
+  //跳转到下载作业
   download(e) {
 
   },
+  //跳转到修改资料
   change: function () {
-
+    wx.navigateTo({
+      url: '/pages/personal/personal',
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -58,8 +66,11 @@ Page({
       wx.showToast({
         title: '需要授权哦',
         icon: 'none'
+
       })
     }
+ 
+      
   },
   add: function (e) {
     const db = wx.cloud.database()
@@ -72,7 +83,9 @@ Page({
         class: ''
       }
 
+
     })
+  
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
