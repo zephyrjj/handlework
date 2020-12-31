@@ -1,0 +1,46 @@
+page{
+  background-color: white;
+}
+.item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #EEEEEE;
+  height: 80px;
+  width: 100%;
+}
+.item image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.item text{
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+  font-size:18px;
+ 
+}
+.box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 70px;
+}
+.box text{
+  color:#7F7F7F;
+}
+.box input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+button{
+  background-color: rgb(106, 216, 106);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  border-radius: 70rpx;
+  width: 90%;
+}

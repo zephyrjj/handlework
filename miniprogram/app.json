@@ -1,6 +1,11 @@
 {
   "pages": [
-    "pages/user/user"
+    "pages/user/user",
+    "pages/myclass/myclass",
+    "pages/homework/homework",
+    "pages/personal/personal"
+
+
    
   ],
   "window": {
