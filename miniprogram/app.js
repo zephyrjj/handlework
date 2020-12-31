@@ -13,14 +13,8 @@ App({
         traceUser: true,
       })
     }
-
-
-
-
     this.globalData = {}
     this.checkLogin()
-
-
   },
   checkLogin: function () {
     const db = wx.cloud.database()
@@ -34,7 +28,6 @@ App({
         }).get({
           success: res => {
 
-
             if (this.userInfoCallback) {
               if (res.data.length != 0) {
                 this.globalData.userInfo = res.data[0]
@@ -44,11 +37,11 @@ App({
                 this.userInfoCallback('empty');
               }
 
-
             }
           }
         })
       }
+
     })
 
   }

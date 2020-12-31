@@ -37,7 +37,6 @@ Page({
     app.userInfoCallback = userInfo=>{
       console.log(userInfo)
     if (userInfo != "empty") {
-
       this.setData({
         isLogin: true
       })
@@ -48,7 +47,6 @@ Page({
             wx.getUserInfo({
               lang: 'zh_CN',
               success: res => {
-
                 let  userInfo = res.userInfo
 
                 this.add(userInfo)
