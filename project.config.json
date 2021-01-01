@@ -55,8 +55,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
+          "name": "pages/addclass/addclass",
+          "pathName": "pages/addclass/addclass",
           "query": "",
           "scene": null
         },

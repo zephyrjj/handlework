@@ -22,6 +22,7 @@ App({
   checkLogin: function () {
     const db = wx.cloud.database()
     const user = db.collection('User')
+    
     wx.cloud.callFunction({
       name: 'login',
       data: {},

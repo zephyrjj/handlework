@@ -53,6 +53,8 @@ Page({
         icon: 'none'
       })
     }
+
+
   },
   add: function (e) {
     const db = wx.cloud.database()
@@ -64,7 +66,168 @@ Page({
         phone: '',
         class: ''
       }
+
+
     })
+
+  },
+  //login 
+  login:function(e){
+    if (app.globalData.userInfo) {
+      let  userInfo =  app.globalData.userInfo
+      if (userInfo != "empty") {
+        this.setData({
+          isLogin: true,
+          name:userInfo.neckname
+        })
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '欢迎回来！',
+              icon: 'none'
+            })
+          },
+        })
+      } else {
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success: res => {
+                  let userInfo = res.userInfo
+                  this.add(userInfo)
+                  this.setData({
+                    isLogin: true,
+                    name:userInfo.neckname
+                  })
+                }
+              })
+            }
+          }
+        })
+        wx.hideLoading({})
+      }
+    }else{
+      app.userInfoCallback = userInfo => {
+        console.log(userInfo)
+        if (userInfo != "empty") {
+          this.setData({
+            isLogin: true,
+            name:userInfo.neckname
+          })
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '欢迎回来！',
+                icon: 'none'
+              })
+            },
+          })
+        } else {
+          wx.getSetting({
+            success: (res) => {
+              if (res.authSetting['scope.userInfo']) {
+                wx.getUserInfo({
+                  lang: 'zh_CN',
+                  success: res => {
+                    let userInfo = res.userInfo
+                    this.add(userInfo)
+                    this.setData({
+                      isLogin: true,
+                      name:userInfo.neckname
+                    })
+                  }
+                })
+              }
+            }
+          })
+          wx.hideLoading({})
+        }
+      }
+    }
+  },
+  //login 
+  login: function (e) {
+    if (app.globalData.userInfo) {
+      let userInfo = app.globalData.userInfo
+      if (userInfo != "empty") {
+        this.setData({
+          isLogin: true,
+          name: userInfo.neckname,
+          class: userInfo.class
+        })
+        app.globalData.login= true
+        wx.hideLoading({
+          success: (res) => {
+            wx.showToast({
+              title: '欢迎回来！',
+              icon: 'none'
+            })
+          },
+        })
+      } else {
+        wx.getSetting({
+          success: (res) => {
+            if (res.authSetting['scope.userInfo']) {
+              wx.getUserInfo({
+                lang: 'zh_CN',
+                success: res => {
+                  let userInfo = res.userInfo
+                  this.add(userInfo)
+                  this.setData({
+                    isLogin: true,
+                    name: userInfo.neckname
+                  })
+                  app.globalData.login= true
+                }
+              })
+            }
+          }
+        })
+        wx.hideLoading({})
+      }
+    } else {
+      app.userInfoCallback = userInfo => {
+        console.log(userInfo)
+        if (userInfo != "empty") {
+          this.setData({
+            isLogin: true,
+            name: userInfo.neckname,
+            class: userInfo.class
+          })
+          app.globalData.login= true
+          wx.hideLoading({
+            success: (res) => {
+              wx.showToast({
+                title: '欢迎回来！',
+                icon: 'none'
+              })
+            },
+          })
+        } else {
+          wx.getSetting({
+            success: (res) => {
+              if (res.authSetting['scope.userInfo']) {
+                wx.getUserInfo({
+                  lang: 'zh_CN',
+                  success: res => {
+                    let userInfo = res.userInfo
+                    this.add(userInfo)
+                    this.setData({
+                      isLogin: true,
+                      name: userInfo.neckname
+                    })
+                    app.globalData.login= true
+                  }
+                })
+              }
+            }
+          })
+          wx.hideLoading({})
+        }
+      }
+    }
   },
   //login 
   login: function (e) {

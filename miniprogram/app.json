@@ -4,8 +4,8 @@
     "pages/user/user",
     "pages/myclass/myclass",
     "pages/homework/homework",
-    "pages/personal/personal"
-    
+    "pages/personal/personal",
+    "pages/addclass/addclass"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
