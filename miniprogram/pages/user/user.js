@@ -112,7 +112,8 @@ Page({
         if (userInfo != "empty") {
           this.setData({
             isLogin: true,
-            name: userInfo.neckname
+            name: userInfo.neckname,
+            class: userInfo.class
           })
           app.globalData.login= true
           wx.hideLoading({

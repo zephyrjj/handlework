@@ -1,12 +1,13 @@
 /* pages/handinhomework/handinhomework.wxss */
-#container{
+#container {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-#top{
+
+#top {
   width: 100vw;
   height: 25%;
   background-color: #ffcccc;
@@ -14,7 +15,8 @@
   justify-content: center;
   align-items: center;
 }
-#info{
+
+#info {
   background-color: #fff;
   border-radius: 30rpx;
   width: 90%;
@@ -23,29 +25,42 @@
   justify-content: space-between;
   align-items: center;
 }
-.info-items{
+
+.info-items {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 50rpx;
 }
-.date{
+
+.date {
   width: 200rpx;
   height: 200rpx;
   border-radius: 50%;
   background-color: #ffcccc;
   color: rgb(255, 255, 255);
   font-weight: bold;
+  margin: 0;
+  margin-right: 30rpx;
 }
-#day{
+
+#day {
   font-size: 64rpx;
 }
-.user{
+
+.user {
   font-size: 36rpx;
   align-items: flex-start;
 }
-#name{
+
+#name {
   font-size: 48rpx;
   font-weight: bold;
+}
+
+#classnum {
+  width: 345rpx;
+  font-size: 28rpx;
+  margin-top:5rpx;
 }

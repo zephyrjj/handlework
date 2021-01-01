@@ -17,11 +17,12 @@
 
         </view>
       </view>
-        <view class="myclass"wx:if="{{isLogin}}">
-          <text>我的班级:{{class}}</text>
-          <view class="change" bindtap="change">
-            修改资料>
-          </view>
+      <view class="myclass" wx:if="{{isLogin}}">
+          <text class="classnum" wx:if="{{class!=''}}">{{class}}</text>
+          <text class="classnum" wx:else>未加入班级</text>
+        <view class="change" bindtap="change">
+          修改资料>
+        </view>
       </view>
     </view>
 

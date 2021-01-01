@@ -85,6 +85,13 @@ page{
   align-items: center;
   border-bottom: 1px solid #EEEEEE;
 }
+.classnum{
+  font-size: 30rpx;
+  font-weight: 200px;
+  color: #fab57dbd;
+  margin-left: 30rpx;
+
+}
 .item image{
   width: 80rpx;
   height: 80rpx;
