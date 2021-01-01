@@ -9,7 +9,30 @@ Page({
   data: {
     
   },
+
+  //修改名字
+  name(e){
+    console.log(e.detail.value)
+    this.setData({
+      name:e.detail.value
+    })
+  },
+  //修改学号
+  sco(e){
+    console.log(e.detail.value)
+    this.setData({
+      sco:e.detail.value
+    })
+  },
   
+  //修改名字
+  phone(e){
+    console.log(e.detail.value);
+    this.setData({
+      phone:e.detail.value
+    })
+  },
+
   //保存
   change:function(e){
     let userInfo =  app.globalData.userInfo

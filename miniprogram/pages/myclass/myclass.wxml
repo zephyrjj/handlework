@@ -1,2 +1,45 @@
-<!--pages/myclass/myclass.wxml-->
-<text>pages/myclass/myclass.wxml</text>
+<!--头部-->
+<view class="box" >
+    <!-- <view class="top">
+    背景会随着往下而动,选取左上角的图片
+    <image mode="top left"
+      src="https://images.pexels.com/photos/414660/pexels-photo-414660.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+    </image>
+  </view>   -->
+
+  <!--背景之上的文字-->
+  <view class="topic" wx:if="{{haveClass==false}}">
+    <text>您还没有班级</text>
+  </view>
+  <view class="topic" wx:else>
+    <text>18信息管理与信息系统2班</text>
+  </view>
+</view>
+<!--下部-->
+<view>
+  <!--添加班级按钮-->
+  <view class="add" wx:if="{{haveClass==false}}">
+    <button class="butt" bindtap="create">创建班级</button>
+    <button class="butt" bindtap="add">加入班级</button>
+  </view>
+  <!--显示班级列表-->
+  <view wx:else>
+    <view class="myclass">
+      <view class="border">
+        <view class="item" wx:for="{{list}}">
+          <view class="student">
+            <view class="sname">
+              <text>{{item.sco}}-{{item.name}}</text>
+            </view>
+            <view class="rank">
+              <text>{{item.job}}</text>
+            </view>
+          </view>
+          <view class="more" bindtap="more">
+            <image mode="widthFix" src="/images/icon/more.png"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,1 +1,93 @@
-/* pages/myclass/myclass.wxss */
+.box{
+  background-image: url('https://images.pexels.com/photos/414660/pexels-photo-414660.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+  height: 100px;
+}
+/* 
+背景会随着往下而动
+.top{
+  width: 100%;
+  position: fixed;  
+  z-index: -1;  
+}
+.top image{
+  width: 100%;
+  height: 100px;
+} */
+.topic{
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.topic text{
+  margin-top: 20px;
+  font-size: 60rpx;
+  font-weight:150px;
+  color: white;
+}
+.add{
+
+  width: 100%;
+  margin-top: 500rpx;
+
+}
+.add button{
+  width: 80%;
+  height: 60px;
+  border-radius: 20rpx;
+  background-color:#44BB00 ;
+  color: white;
+}
+.butt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin:40px
+}
+.myclass{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 50px;
+}
+.border{
+  background-color: white;
+  width: 90%;
+  border-radius: 20rpx;
+}
+.item{
+  display: flex;
+  
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #EEEEEE;
+  margin:10px;
+  
+}
+.student{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+.sname text{
+  font-size: 20px;
+}
+.rank{
+  width: 65px;
+  border:1px solid red;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.more{
+  margin-right: 15px;
+}
+.more image{
+  
+  width:20px;
+}

@@ -1,0 +1,54 @@
+page{
+  background-color: #F6F7F9;
+}
+.box1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:15px ;
+}
+.box2{
+  width: 90%;
+  height: 300px;
+  border-radius: 20rpx;
+  background-color: white;
+  margin:10px;
+ 
+}
+.top{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+.top text{
+  font-weight: bold;
+  font-size: 20px;
+
+}
+.item{
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid #EEEEEE;
+  margin: 10px;
+}
+.weui-input{
+  margin-left: 15px;
+}
+
+
+
+
+.butt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+
+  width: 90%;
+  height: 60px;
+  border-radius: 20rpx;
+  background-color:#44BB00 ;
+  color: white;
+  margin-top: 50px;
+}
