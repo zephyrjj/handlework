@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/handinhomework/handinhomework",
     "pages/user/user",
     "pages/myclass/myclass",
     "pages/homework/homework",
-    "pages/personal/personal",
-    "pages/handinhomework/handinhomework"
+    "pages/personal/personal"
+    
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
