@@ -1,20 +1,36 @@
 // pages/handinhomework/handinhomework.js
 const date = new Date();
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    name: '泽铭',
-    class: '信管2班'
+      isLogin:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.userInfoCallback = userInfo => {
+      if(userInfo!='empty'){
+        this.setData({
+          isLogin:true,
+          class:userInfo.class,
+          name:userInfo.neckname
+        })
+      }
+    }
+    var day = date.getDay();
+    var month = date.getMonth()+1;
+    var dat = date.getDate();
+    var Da= this.getDay(day);
+    this.setData({
+      day: Da,
+      date: month+'月'+dat+'日'
+    });
   },
 
   /**
@@ -28,14 +44,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var day = date.getDay();
-    var month = date.getMonth()+1;
-    var dat = date.getDate();
-    var Da= this.getDay(day);
-    this.setData({
-      day: Da,
-      date: month+'月'+dat+'日'
-    });
+    if(app.globalData.userInfo){
+      this.setData({
+        isLogin:true,
+        name:app.globalData.userInfo.neckname,
+        class:app.globalData.userInfo.class
+      })
+    }
   },
   getDay(day){
     switch (day) {

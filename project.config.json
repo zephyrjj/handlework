@@ -55,12 +55,6 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/C_name/C_name",
-          "pathName": "pages/C_name/C_name",
-          "query": "",
-          "scene": null
-        },
-        {
           "name": "pages/personal/personal",
           "pathName": "pages/personal/personal",
           "query": "",

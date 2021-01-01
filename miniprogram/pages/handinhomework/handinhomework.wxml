@@ -1,9 +1,12 @@
 <view id="container">
   <view id="top"> 
-    <view id="info">
-      <view class="info-items user">
+    <view id="info" >
+      <view wx:if="{{isLogin}}" class="info-items user" >
         <text id="name">{{name}}</text>
         <text>{{class}}</text>
+      </view>
+      <view wx:else>
+        
       </view>
       <view class="info-items date">
         <text id="day">{{day}}</text>

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: false
+    isLogin: app.globalData.login
   },
 
   //跳转到我的班级
@@ -44,18 +44,15 @@ Page({
       this.add(e.detail.userInfo)
       this.setData({
         isLogin: true,
-        name:e.detail.userInfo.neckName
+        name: e.detail.userInfo.neckName
       })
-      
+      app.globalData.login= true
     } else {
-
       wx.showToast({
         title: '需要授权哦',
         icon: 'none'
       })
     }
-
-
   },
   add: function (e) {
     const db = wx.cloud.database()
@@ -67,20 +64,19 @@ Page({
         phone: '',
         class: ''
       }
-
-
     })
-
   },
   //login 
-  login:function(e){
+  login: function (e) {
     if (app.globalData.userInfo) {
-      let  userInfo =  app.globalData.userInfo
+      let userInfo = app.globalData.userInfo
       if (userInfo != "empty") {
         this.setData({
           isLogin: true,
-          name:userInfo.neckname
+          name: userInfo.neckname,
+          class: userInfo.class
         })
+        app.globalData.login= true
         wx.hideLoading({
           success: (res) => {
             wx.showToast({
@@ -100,8 +96,9 @@ Page({
                   this.add(userInfo)
                   this.setData({
                     isLogin: true,
-                    name:userInfo.neckname
+                    name: userInfo.neckname
                   })
+                  app.globalData.login= true
                 }
               })
             }
@@ -109,14 +106,15 @@ Page({
         })
         wx.hideLoading({})
       }
-    }else{
+    } else {
       app.userInfoCallback = userInfo => {
         console.log(userInfo)
         if (userInfo != "empty") {
           this.setData({
             isLogin: true,
-            name:userInfo.neckname
+            name: userInfo.neckname
           })
+          app.globalData.login= true
           wx.hideLoading({
             success: (res) => {
               wx.showToast({
@@ -136,8 +134,9 @@ Page({
                     this.add(userInfo)
                     this.setData({
                       isLogin: true,
-                      name:userInfo.neckname
+                      name: userInfo.neckname
                     })
+                    app.globalData.login= true
                   }
                 })
               }
@@ -154,7 +153,6 @@ Page({
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -162,8 +160,8 @@ Page({
     let userInfo = app.globalData.userInfo
     if (app.globalData.userInfo) {
       this.setData({
-             class:userInfo.class,
-             name:userInfo.neckname
+        class: userInfo.class,
+        name: userInfo.neckname
       })
     }
   },
