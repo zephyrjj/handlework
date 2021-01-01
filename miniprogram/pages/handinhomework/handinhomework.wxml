@@ -1,17 +1,21 @@
 <view id="container">
   <view id="top"> 
-    <view id="info">
-      <view class="info-items user">
-        <text id="name">泽铭</text>
-        <text>班级</text>
+    <view id="info" >
+      <view wx:if="{{isLogin}}" class="info-items user" >
+        <text id="name">{{name}}</text>
+        <text id="classnum">{{class}}</text>
+      </view>
+      <view wx:else>
+        
       </view>
       <view class="info-items date">
-        <text id="day">周四</text>
-        <text>12月31日</text>
+        <text id="day">{{day}}</text>
+        <text>{{date}}</text>
       </view>
     </view>
   </view>
 
   <view id="bottom">
+    
   </view>
 </view>

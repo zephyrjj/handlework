@@ -12,7 +12,9 @@ App({
         // env: 'my-env-id',
         traceUser: true,
       })
-    this.globalData = {}
+    this.globalData = {
+      login:false
+    }
     this.checkLogin()
   }
 },
@@ -31,9 +33,10 @@ App({
           success: res => {
               if (res.data.length != 0) {
                 this.globalData.userInfo = res.data[0] 
-                if (this.userInfoCallback) {         //确保Onlaunch比onLoad先执行
+                if (this.userInfoCallback) {         //确保onLaunch比onLoad先执行
                   this.userInfoCallback(res.data[0])
                 }
+                
               } else {
                 this.globalData.userInfo = 'empty'
                 if (this.userInfoCallback) {
@@ -45,7 +48,5 @@ App({
       }
 
     })
-
   }
-
 })
