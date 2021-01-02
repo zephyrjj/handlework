@@ -11,9 +11,16 @@ Page({
 
   //跳转到我的班级
   myclass(e) {
-    wx.navigateTo({
-      url: '/pages/myclass/myclass',
-    })
+    if (app.globalData.login) {
+      wx.navigateTo({
+        url: '/pages/myclass/myclass',
+      })
+    }else{
+      wx.showToast({
+        title: '请先登录',
+        icon:'none'
+      })
+    }
   },
   //跳转到我的作业
   homework(e) {
@@ -46,7 +53,7 @@ Page({
         isLogin: true,
         name: e.detail.userInfo.neckName
       })
-      app.globalData.login= true
+      app.globalData.login = true
     } else {
       wx.showToast({
         title: '需要授权哦',
@@ -71,82 +78,7 @@ Page({
     })
 
   },
-  //login 
-  login:function(e){
-    if (app.globalData.userInfo) {
-      let  userInfo =  app.globalData.userInfo
-      if (userInfo != "empty") {
-        this.setData({
-          isLogin: true,
-          name:userInfo.neckname
-        })
-        wx.hideLoading({
-          success: (res) => {
-            wx.showToast({
-              title: '欢迎回来！',
-              icon: 'none'
-            })
-          },
-        })
-      } else {
-        wx.getSetting({
-          success: (res) => {
-            if (res.authSetting['scope.userInfo']) {
-              wx.getUserInfo({
-                lang: 'zh_CN',
-                success: res => {
-                  let userInfo = res.userInfo
-                  this.add(userInfo)
-                  this.setData({
-                    isLogin: true,
-                    name:userInfo.neckname
-                  })
-                }
-              })
-            }
-          }
-        })
-        wx.hideLoading({})
-      }
-    }else{
-      app.userInfoCallback = userInfo => {
-        console.log(userInfo)
-        if (userInfo != "empty") {
-          this.setData({
-            isLogin: true,
-            name:userInfo.neckname
-          })
-          wx.hideLoading({
-            success: (res) => {
-              wx.showToast({
-                title: '欢迎回来！',
-                icon: 'none'
-              })
-            },
-          })
-        } else {
-          wx.getSetting({
-            success: (res) => {
-              if (res.authSetting['scope.userInfo']) {
-                wx.getUserInfo({
-                  lang: 'zh_CN',
-                  success: res => {
-                    let userInfo = res.userInfo
-                    this.add(userInfo)
-                    this.setData({
-                      isLogin: true,
-                      name:userInfo.neckname
-                    })
-                  }
-                })
-              }
-            }
-          })
-          wx.hideLoading({})
-        }
-      }
-    }
-  },
+  
   //login 
   login: function (e) {
     if (app.globalData.userInfo) {
@@ -155,9 +87,9 @@ Page({
         this.setData({
           isLogin: true,
           name: userInfo.neckname,
-          class: userInfo.class
+          class: userInfo.cName
         })
-        app.globalData.login= true
+        app.globalData.login = true
         wx.hideLoading({
           success: (res) => {
             wx.showToast({
@@ -179,7 +111,7 @@ Page({
                     isLogin: true,
                     name: userInfo.neckname
                   })
-                  app.globalData.login= true
+                  app.globalData.login = true
                 }
               })
             }
@@ -194,9 +126,9 @@ Page({
           this.setData({
             isLogin: true,
             name: userInfo.neckname,
-            class: userInfo.class
+            class: userInfo.cName
           })
-          app.globalData.login= true
+          app.globalData.login = true
           wx.hideLoading({
             success: (res) => {
               wx.showToast({
@@ -218,7 +150,7 @@ Page({
                       isLogin: true,
                       name: userInfo.neckname
                     })
-                    app.globalData.login= true
+                    app.globalData.login = true
                   }
                 })
               }
@@ -242,7 +174,7 @@ Page({
     let userInfo = app.globalData.userInfo
     if (app.globalData.userInfo) {
       this.setData({
-        class: userInfo.class,
+        class: userInfo.cName,
         name: userInfo.neckname
       })
     }

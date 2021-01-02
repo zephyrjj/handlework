@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/handinhomework/handinhomework",
     "pages/user/user",
     "pages/myclass/myclass",
     "pages/homework/homework",
     "pages/personal/personal",
-    "pages/handinhomework/handinhomework",
     "pages/addclass/addclass"
   ],
   "window": {

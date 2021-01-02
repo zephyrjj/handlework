@@ -16,6 +16,23 @@
   </view>
 
   <view id="bottom">
-    
+
+    <view class="homework-item">
+      <view class="title">
+        <text class="homeworkclass">数据库作业</text>
+        <text>2021年1月1日发布</text>
+      </view>
+      <view class="deadline">
+        <text>提交截止：2021年1月2日20：00</text>
+      </view>
+      <view class="content">
+        <text>作业内容:</text>
+        <text>数据库设计报告</text>
+      </view>
+      <view class="details">
+        <text>点击查看作业详情</text>
+      </view>
+    </view>
+
   </view>
 </view>

@@ -1,22 +1,25 @@
 /* pages/handinhomework/handinhomework.wxss */
-#container {
+#container,#bottom {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+#bottom{
+  background-color: rgb(248, 248, 248);
+  height: 100%;
+}
 #top {
   width: 100vw;
-  height: 25%;
+  height: 30%;
   background-color: #ffcccc;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#info {
+#info,.homework-item{
   background-color: #fff;
   border-radius: 30rpx;
   width: 90%;
@@ -25,7 +28,16 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.homework-item{
+  height: 450rpx;
+  margin: 60rpx 0 25rpx;
+  flex-direction: column;
+  justify-content: flex-start;
+  box-shadow: 0 0 10rpx 10rpx rgb(241, 241, 241) ;
+}
+.homework-item view{
+  width: 90%;
+}
 .info-items {
   display: flex;
   flex-direction: column;
@@ -63,4 +75,32 @@
   width: 345rpx;
   font-size: 28rpx;
   margin-top:5rpx;
+}
+
+.title{
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+.homeworkclass{
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.deadline{
+  margin: 20rpx 0;
+  color: rgb(71, 71, 71);
+  font-size: 32rpx;
+}
+.content{
+  height: 40%;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  margin-bottom: 20rpx;
+}
+.details{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(71, 71, 71);
 }

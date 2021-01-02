@@ -12,17 +12,16 @@ App({
         // env: 'my-env-id',
         traceUser: true,
       })
-    this.globalData = {
-      login:false
+      this.globalData = {
+        login: false
+      }
+      this.checkLogin()
     }
-    this.checkLogin()
-  }
-},
+  },
 
   checkLogin: function () {
     const db = wx.cloud.database()
     const user = db.collection('User')
-    
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -31,22 +30,34 @@ App({
           _openid: res.openid
         }).get({
           success: res => {
-              if (res.data.length != 0) {
-                this.globalData.userInfo = res.data[0] 
-                if (this.userInfoCallback) {         //确保onLaunch比onLoad先执行
-                  this.userInfoCallback(res.data[0])
-                }
-                
-              } else {
-                this.globalData.userInfo = 'empty'
-                if (this.userInfoCallback) {
-                  this.userInfoCallback('empty');
-                }
+            console.log(res)
+            if (res.data.length != 0) {
+              this.globalData.userInfo = res.data[0]
+              if (res.data[0].class) {
+                wx.cloud.database().collection('Class').where({
+                  _id: res.data[0].class
+                }).field({
+                  cName: true
+                }).get({
+                  success: res => {
+                    this.globalData.userInfo.cName = res.data[0].cName      
+                  }
+                })
+              }else{
+                this.globalData.userInfo.cName = ''
               }
+              if (this.userInfoCallback) { //确保onLaunch比onLoad先执行
+                this.userInfoCallback(this.globalData.userInfo)
+              }
+            } else {
+              this.globalData.userInfo = 'empty'
+              if (this.userInfoCallback) {
+                this.userInfoCallback('empty');
+              }
+            }
           }
         })
       }
-
     })
   }
 })

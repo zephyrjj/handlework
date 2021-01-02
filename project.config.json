@@ -57,6 +57,8 @@
         {
           "name": "pages/myclass/myclass",
           "pathName": "pages/myclass/myclass",
+          "name": "pages/addclass/addclass",
+          "pathName": "pages/addclass/addclass",
           "query": "",
           "scene": null
         },

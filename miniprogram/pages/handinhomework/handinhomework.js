@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-      isLogin:false
+    isLogin: false
   },
 
   /**
@@ -15,21 +15,22 @@ Page({
    */
   onLoad: function (options) {
     app.userInfoCallback = userInfo => {
-      if(userInfo!='empty'){
+      if (userInfo != 'empty') {
         this.setData({
-          isLogin:true,
-          class:userInfo.class,
-          name:userInfo.neckname
+          isLogin: true,
+          class:userInfo.cName,
+          name: userInfo.neckname
         })
+       
       }
     }
     var day = date.getDay();
-    var month = date.getMonth()+1;
+    var month = date.getMonth() + 1;
     var dat = date.getDate();
-    var Da= this.getDay(day);
+    var Da = this.getDay(day);
     this.setData({
       day: Da,
-      date: month+'月'+dat+'日'
+      date: month + '月' + dat + '日'
     });
   },
 
@@ -44,15 +45,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(app.globalData.userInfo){
+    if (app.globalData.userInfo) {
       this.setData({
-        isLogin:true,
-        name:app.globalData.userInfo.neckname,
-        class:app.globalData.userInfo.class
+        isLogin: true,
+        name: app.globalData.userInfo.neckname,
+        class: app.globalData.userInfo.cName
       })
     }
   },
-  getDay(day){
+  getDay(day) {
     switch (day) {
       case 1:
         return '周一';
