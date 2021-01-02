@@ -1,6 +1,6 @@
 <!--头部-->
-<view class="box" >
-    <!-- <view class="top">
+<view class="box">
+  <!-- <view class="top">
     背景会随着往下而动,选取左上角的图片
     <image mode="top left"
       src="https://images.pexels.com/photos/414660/pexels-photo-414660.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
@@ -24,19 +24,58 @@
   </view>
   <!--显示班级列表-->
   <view wx:else>
+    <!--班级列表-->
     <view class="myclass">
+      <!--框框里的内容-->
       <view class="border">
-        <view class="item" wx:for="{{list}}">
-          <view class="student">
-            <view class="sname">
-              <text>{{item.sco}}-{{item.name}}</text>
+        <!--显示班级人数-->
+        <view class="class-information">
+
+          <view class="in-item">
+            <text id="num">{{total}}</text>
+            <text>已加入</text>
+          </view>
+          <view class="in-item">
+            <text id="num">{{total}}</text>
+            <text>管理员数</text>
+          </view>
+          <view class="in-item">
+            <text id="num">{{total}}</text>
+            <text>班级人数</text>
+          </view>
+        </view>
+        <!--显示班级具体信息-->
+        <view class="class-detail">
+          <view class="item" wx:for="{{list}}">
+            <view class="student">
+              <view class="sname">
+                <text>{{item.sco}}-{{item.name}}</text>
+              </view>
+              <view class="rank">
+                <text>{{item.job}}</text>
+              </view>
             </view>
-            <view class="rank">
-              <text>{{item.job}}</text>
+            <view class="more" bindtap="more">
+              <image mode="widthFix" src="/images/icon/more.png"></image>
             </view>
           </view>
-          <view class="more" bindtap="more">
-            <image mode="widthFix" src="/images/icon/more.png"></image>
+        </view>
+      </view>
+    </view>
+    <!--更多按钮展示的页面-->
+    <view class='shadow' wx:if="{{chooseSize}}" bindtap='hidelist'></view>
+    <view class='choosen' wx:if="{{chooseSize}}" animation='{{animationData}}'>
+      <!-- 内容 -->
+      <view class="container-box">
+        <view class="fun-box">
+          <view class="fun-item" bindtap="tofunction">
+            <text>课委权限</text>
+          </view>
+          <view class="fun-item" bindtap="tofunction">
+            <text>移除成员</text>
+          </view>
+          <view class="fun-item" bindtap="tofunction">
+            <text>举报用户</text>
           </view>
         </view>
       </view>
