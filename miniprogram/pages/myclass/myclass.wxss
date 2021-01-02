@@ -45,6 +45,69 @@
   font-size: 25px;
   margin:40px
 }
+/*--------加入班级弹窗-----*/
+.add-modal{
+  display: flex;
+  justify-content: center;
+}
+.invate{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 700rpx;
+  height: 420rpx;
+  position: fixed;
+  bottom: 250px;
+  border-radius: 40rpx;
+  background-color: #fff;
+  z-index: 98;
+}
+.invate-top{
+  display: flex;
+  align-items: space-between;
+  margin-left: 30px;
+  margin-bottom: 30px;
+  
+}
+.invate-top text{
+  margin-left:70px ;
+  font-weight: bold;
+  font-size: 20px;
+}
+.back{
+  display: flex;
+  margin-left: 70px;
+}
+.back image{
+  height: 40rpx;
+  width: 40rpx;
+  margin-right:20rpx ;
+}
+.invate-input{
+  width: 90%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 30rpx;
+  background-color: #F7F8F9;
+  font-size: 18px;
+  margin-bottom: 10px;
+  padding-left: 15rpx;
+}
+.invate-button{
+  margin-top: 20px;
+  width: 100%;
+}
+.invate-button button{
+  width: 90%;
+  border-radius: 30rpx;
+  background-color:#ffcccc ;
+  color: white;
+}
+
+/*----显示我的班级界面-----*/
 .myclass{
   width: 100%;
   display: flex;
@@ -112,6 +175,7 @@
 .more image{
   width:20px;
 }
+/*-------更多弹出------------*/
 
 /* 上滑高度 */
 .choosen{

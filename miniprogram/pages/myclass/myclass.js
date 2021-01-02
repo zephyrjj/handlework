@@ -63,12 +63,24 @@ Page({
   ],
     haveClass:false,      //判断是否有班级
     chooseSize:false,     //判断点击更多
+    addclass:false,       //加入班级
     total:36              //班级总人数
   },
   //加入班级
   add:function(e){
     this.setData({
+      addclass:true
+    })
+  },
+  confirm(){
+    this.setData({
       haveClass:true
+    })
+  },
+  //叉叉的按钮
+  hidenshadow:function(e){
+    this.setData({
+      addclass:false
     })
   },
   //创建班级

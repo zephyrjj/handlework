@@ -81,4 +81,25 @@
       </view>
     </view>
   </view>
+  <!--显示加入班级-->
+  <view class="add-modal">
+    <view class='shadow' wx:if="{{addclass}}" bindtap="hidenshadow"></view>
+    <view class="invate" wx:if="{{addclass}}">
+      <view class="invate-top">
+        <view>
+          <text>输入班级邀请码</text>
+        </view>
+        
+        <view class="back">
+          <image bindtap="hidenshadow" src="/images/icon/XX.png"></image>
+        </view>
+      </view>
+      <view class="invate-input">
+        <input type="text" placeholder="请输入班级邀请码" />
+      </view>
+      <view class="invate-button">
+        <button bindtap="confirm">确认加入</button>
+      </view>
+    </view>
+  </view>
 </view>
