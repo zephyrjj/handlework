@@ -12,7 +12,7 @@ Page({
   formSubmit(e) {
     let classInfo = e.detail.value
     if (classInfo.cname != '' && classInfo.num != '') {
-      db.collection('Class').add({
+      db.collection('Class').add({ //添加班级信息到班级集合
         data: {
           cName: classInfo.cname,
           stuNum: classInfo.num
@@ -21,16 +21,23 @@ Page({
         console.log(res)
         let classid = res._id
         app.globalData.userInfo.class = classid
-        wx.cloud.database().collection('User').doc(app.globalData.userInfo._id).update({
+        wx.cloud.database().collection('User').doc(app.globalData.userInfo._id).update({ //添加班级的id到个人信息中
           data: {
             class: classid
           }
         }).then(res => {
-          wx.showToast({
-            title: '创建成功',
-            icon: 'success'
+          db.collection('classMember').add({ //向班级成员表添加个人openid以及负责人标记
+            data: {
+              class_id: classid, //班级的id
+              tag: 'H', //H代表管理员，P代表普通学生
+            }
+          }).then(res => {
+            app.globalData.userInfo.cName = classInfo.cname
+            wx.showToast({
+              title: '创建成功',
+              icon: 'success'
+            })
           })
-          app.globalData.userInfo.cName = classInfo.cname
         }).catch(err => {
           console.log(err)
         })
