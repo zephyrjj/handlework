@@ -7,7 +7,7 @@
     <form catchsubmit="formSubmit">
       <view class="item">
         <text>班级名称</text>
-        <input class="weui-input" name="cname" placeholder="如：向日葵大班" />
+        <input class="weui-input" name="cname" placeholder="如：20电子商务1班" />
       </view>
       <view class="item">
         <text>学生人数</text>

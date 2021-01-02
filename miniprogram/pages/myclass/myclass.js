@@ -68,7 +68,7 @@ Page({
     this.setData({
       haveClass:true
     })
-  },
+  },  
   //创建班级
   create:function(e){
     wx.navigateTo({

@@ -1,4 +1,6 @@
 // pages/addclass/addclass.js
+const db = wx.cloud.database();
+const app = getApp();
 Page({
 
   /**
@@ -8,6 +10,43 @@ Page({
 
   },
   formSubmit(e) {
+    let classInfo = e.detail.value
+    if (classInfo.cname != '' && classInfo.num != '') {
+      db.collection('Class').add({
+        data: {
+          cName: classInfo.cname,
+          stuNum: classInfo.num
+        }
+      }).then(res => {
+        console.log(res)
+        let classid = res._id
+        app.globalData.userInfo.class = classid
+        wx.cloud.database().collection('User').doc(app.globalData.userInfo._id).update({
+          data: {
+            class: classid
+          }
+        }).then(res => {
+          wx.showToast({
+            title: '创建成功',
+            icon: 'success'
+          })
+          app.globalData.userInfo.cName = classInfo.cname
+        }).catch(err => {
+          console.log(err)
+        })
+      }).catch(err => {
+        console.log(err)
+        wx.showToast({
+          title: '发生了错误请稍后再试',
+          icon: 'none'
+        })
+      })
+    } else {
+      wx.showToast({
+        title: '两个空都必填哦！',
+        icon: 'none'
+      })
+    }
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
   },
   /**
