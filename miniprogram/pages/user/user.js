@@ -30,7 +30,9 @@ Page({
   },
   //跳转到下载作业
   download(e) {
-
+    wx.navigateTo({
+      url: '/pages/download/download',
+    })
   },
   //跳转到修改资料
   change: function () {

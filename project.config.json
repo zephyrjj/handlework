@@ -55,8 +55,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/publish/publish",
-          "pathName": "pages/publish/publish",
+          "name": "pages/download/download",
+          "pathName": "pages/download/download",
           "query": "",
           "scene": null
         },
