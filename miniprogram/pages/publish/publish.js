@@ -12,7 +12,12 @@ Page({
   },
   //发布作业按钮
   submit:function(e){
-    
+    console.log(e.detail.value);
+  },
+
+  //科目名字输入框  失去焦点
+  getName:function(e){
+
   },
   /**
    * 生命周期函数--监听页面加载

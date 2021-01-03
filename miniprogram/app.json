@@ -7,7 +7,8 @@
     "pages/homework/homework",
     "pages/personal/personal",
     "pages/addclass/addclass",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/download/download"
 
   ],
   "window": {

@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-content: center;
-  height: 700rpx;
+  height: 600rpx;
 }
 .top,.middle{
   width: 700rpx;
