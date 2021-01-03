@@ -105,6 +105,7 @@ Page({
                         haveClass: true
                       })
                       app.globalData.userInfo.class = classdetail._id
+                      app.globalData.userInfo.cName = classdetail.cName
                     }
                   })
                 })
@@ -138,49 +139,49 @@ Page({
     })
   },
   //更多的按钮
-  more: function (e) {
+  more:function(e){
     if (this.data.chooseSize == false) {
       this.showlist();
-    }
+    } 
   },
   //显示动画函数
-  showlist: function (e) {
+  showlist:function(e){
     var that = this;
     var animation = wx.createAnimation({
-      // 动画持续时间
+    // 动画持续时间
       duration: 500,
       timingFunction: 'linear'
     })
-    // 将该变量赋值给当前动画
+  // 将该变量赋值给当前动画
     that.animation = animation
-    // 先在y轴偏移，然后用step()完成一个动画
+  // 先在y轴偏移，然后用step()完成一个动画
     animation.translateY(1000).step()
     that.setData({
-      // 通过export()方法导出数据
+    // 通过export()方法导出数据
+    animationData: animation.export(),
+    chooseSize: true
+  })
+  //设置延时
+  setTimeout(function () {
+    animation.translateY(0).step()
+    that.setData({
       animationData: animation.export(),
-      chooseSize: true
+      clearcart: false
     })
-    //设置延时
-    setTimeout(function () {
-      animation.translateY(0).step()
-      that.setData({
-        animationData: animation.export(),
-        clearcart: false
-      })
-    }, 100)
+  }, 100)
   },
   //隐藏动画函数
-  hidelist: function (e) {
+  hidelist:function(e){
     var that = this;
     var animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'linear'
+      duration:500,
+      timingFunction:'linear'
     })
     that.animation = animation
     animation.translateY(200).step()
     that.setData({
-      animationData: animation.export()
-
+      animationData:animation.export()
+      
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -211,7 +212,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.setNavigationBarTitle({
+      title: '我的班级',
+    })
   },
 
   /**

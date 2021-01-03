@@ -5,8 +5,94 @@ Page({
    * 页面的初始数据
    */
   data: {
+    srcarray:[],
+    FilePaths:[]
   },
-
+  submit(e){    //提交
+    console.log(e.detail.value);
+    let filepaths = this.data.FilePaths;
+    for (let i = 0; i < filepaths.length; i++) {
+      wx.cloud.uploadFile({
+        cloudPath: 'uploadhomework/'+filepaths[i].name,     //将文件存到云存储
+        filePath: filepaths[i].path,
+        success(res){
+          console.log(res.fileID) //将ID存到数据库
+        },
+        fail(res){
+          console.log(res);
+        }
+      });
+    }
+    let srcarray1 = this.data.srcarray;
+    // for (let i = 0; i < srcarray1.length; i++) {
+    //   wx.cloud.uploadFile({
+    //     cloudPath: 'uploadhomework/'+srcarray1[i].name,     //将文件存到云存储
+    //     filePath: srcarray1[i].path,
+    //     success(res){
+    //       console.log(res.fileID) //将ID存到数据库
+    //     },
+    //     fail(res){
+    //       console.log(res);
+    //     }
+    //   });
+    // }
+    
+  },
+  uploadfile(e){  //选择文件
+    var that = this;
+    var filepaths = this.data.FilePaths;
+    wx.chooseMessageFile({
+      count: 3,
+      type: 'file',
+      success(res){
+        let tempFilePaths = res.tempFiles;
+        filepaths = filepaths.concat(tempFilePaths);
+        that.setData({
+          FilePaths: filepaths
+        });
+      },
+    })
+  },
+  uploadimage(e){ //选择图片
+    var that = this;
+    var srcarray = this.data.srcarray;
+    if(srcarray.length<9){
+      wx.chooseImage({
+        count: 9,
+        success(res){
+          let tempFilePaths = res.tempFilePaths;
+          let array = srcarray.concat(tempFilePaths);
+          that.setData({
+            srcarray: array
+          });
+        }
+      })
+    }else{
+      wx.showToast({
+        title: '最多可选择9张图片',
+        icon: 'none'
+      })
+    }
+  },
+  delimage(e){ //删除图片
+    var srcarray = this.data.srcarray;
+    srcarray.splice(e.currentTarget.dataset.index,1);
+    this.setData({
+      srcarray:srcarray
+    });
+  },
+  delfile(e){ //删除文件
+    var filepaths = this.data.FilePaths;
+    filepaths.splice(e.currentTarget.dataset.index,1);
+    this.setData({
+      FilePaths:filepaths
+    });
+  },
+  previewimage(e){ //预览图片
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.src],
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

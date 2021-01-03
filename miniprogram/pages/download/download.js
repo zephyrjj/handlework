@@ -1,12 +1,11 @@
-// pages/homework/homework.js
+// pages/download/download.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isLogin:false,
-    isSubmitted:false,    //false：未交了作业，  true：上交了作业
     homeworklist:[{
       id:'1',
       title:'数据库作业',
@@ -27,20 +26,16 @@ Page({
       content:'数据挖掘报告'
     }
   ]
-},
-release(){
-  console.log('发布作业');
-  
-},
-details(e){
-  wx.navigateTo({
-    url: '/pages/homeworkdetails/homeworkdetails',
-    success: function(res) {
-      // 通过eventChannel向被打开页面传送数据
-      res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.currentTarget.dataset.homework })
-    }
-  });
-},
+  },
+  details(e){
+    wx.navigateTo({
+      url: '/pages/homeworkdetails/homeworkdetails',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.currentTarget.dataset.homework })
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -59,9 +54,7 @@ details(e){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.setNavigationBarTitle({
-      title: '我的作业',
-    })
+
   },
 
   /**

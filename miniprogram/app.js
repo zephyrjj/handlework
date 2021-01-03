@@ -34,7 +34,7 @@ App({
           if (res.data.length != 0) {
             this.globalData.userInfo = res.data[0]
             if (res.data[0].class) {
-              await wx.cloud.database().collection('Class').where({
+               wx.cloud.database().collection('Class').where({
                 _id: res.data[0].class
               }).field({
                 cName: true

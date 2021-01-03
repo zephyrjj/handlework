@@ -15,7 +15,7 @@
     </view>
   </view>
  
-  <view id="release" bindtap="release">
+  <view id="release" bindtap="release" wx:if="{{tag=='H'}}">
    <text>发布作业</text> 
   </view>
   <view id="bottom">
@@ -23,7 +23,7 @@
     <block wx:for="{{homeworklist}}" wx:key="index">
       <view class="homework-item" bindtap="details" data-homework="{{item}}">
         <view class="title">
-          <text class="homeworkclass">{{item.title}}</text>
+          <text class="homeworkclass">{{item.title}}作业</text>
           <text>{{item.time}}发布</text>
         </view>
         <view class="deadline">

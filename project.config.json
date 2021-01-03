@@ -55,20 +55,14 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/myclass/myclass",
-          "pathName": "pages/myclass/myclass",
+          "name": "pages/download/download",
+          "pathName": "pages/download/download",
           "query": "",
           "scene": null
         },
         {
           "name": "pages/handinhomework/handinhomework",
           "pathName": "pages/handinhomework/handinhomework",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/user/user",
-          "pathName": "pages/user/user",
           "query": "",
           "scene": null
         }

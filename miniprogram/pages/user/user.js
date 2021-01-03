@@ -24,17 +24,15 @@ Page({
   },
   //跳转到我的作业
   homework(e) {
-    wx.cloud.callFunction({
-      name: 'createClass',
-      data: {name:"1"},
-      success: res => {
-        console.log(res)
-      }
+    wx.navigateTo({
+      url: '/pages/homework/homework',
     })
   },
   //跳转到下载作业
   download(e) {
-
+    wx.navigateTo({
+      url: '/pages/download/download',
+    })
   },
   //跳转到修改资料
   change: function () {

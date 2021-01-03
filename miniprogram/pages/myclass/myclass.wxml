@@ -89,7 +89,7 @@
         <view>
           <text>输入班级邀请码</text>
         </view>
-
+        
         <view class="back">
           <image bindtap="hidenshadow" src="/images/icon/XX.png"></image>
         </view>

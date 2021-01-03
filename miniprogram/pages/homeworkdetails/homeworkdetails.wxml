@@ -2,17 +2,51 @@
 <view id="container">
   <view id="homework">
     <view class="title">
-      <text>{{homework.title}}</text>
-      <text>{{homework.time}}发布</text>
+      <text class="title-item">{{homework.title}}</text>
+      <text class="title-time">{{homework.time}}发布</text>
     </view>
-    <view>
-      <text>提交截止时间：{{homework.deadline}}</text>
+    <view class="deadline">
+      <text class="deadline-item">提交截止时间：{{homework.deadline}}</text>
     </view>
-    <view>
+    <view class="content">
       <text>作业内容：{{homework.content}}</text>
     </view>
-    <view>
-      提交
+    <form bindsubmit="submit">
+    <view class="homework-textarea">
+      <text>提交作业</text>
+      <textarea name="homework"  cols="30" rows="10" placeholder="输入文字..." maxlength="-1"></textarea>
     </view>
+    <view class="uploaditem">
+      <block wx:for="{{srcarray}}" wx:key="index">
+        <view class="uploadblock">
+          <image class="uploadimage" src="{{item}}" bindtap="previewimage" data-src="{{item}}"></image>
+          <image class="close" bindtap="delimage" data-index="{{index}}" src="../../images/icon/XX.png"></image>
+        </view>
+      </block>  
+    </view>
+    <view class="uploadfile">
+      <block wx:for="{{FilePaths}}" wx:key="index">
+        <view class="uploadfile-item">
+          <image class="fileimg" src="../../images/icon/afile.png"></image>
+          <text>{{item.name}}</text>
+          <image class="closefile" bindtap="delfile" data-index="{{index}}" src="../../images/icon/XX.png"></image>
+        </view>
+      </block>
+    </view>
+    
+    <view class="type"> 
+      <view class="add" bindtap="uploadfile">
+        <image class="add-item" src="../../images/icon/file.png"></image>
+      </view>
+      <view class="add" bindtap="uploadimage">
+        <image class="add-item" src="../../images/icon/image.png"></image>
+      </view>
+    </view>
+    <view id="btncon">
+      <button form-type="submit" class="btn">
+      提交
+      </button>
+    </view>
+    </form>
   </view>
 </view>
