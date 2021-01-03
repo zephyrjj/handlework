@@ -65,6 +65,12 @@
           "pathName": "pages/handinhomework/handinhomework",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "pages/user/user",
+          "pathName": "pages/user/user",
+          "query": "",
+          "scene": null
         }
       ]
     }

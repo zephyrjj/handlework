@@ -15,16 +15,22 @@ Page({
       wx.navigateTo({
         url: '/pages/myclass/myclass',
       })
-    }else{
+    } else {
       wx.showToast({
         title: '请先登录',
-        icon:'none'
+        icon: 'none'
       })
     }
   },
   //跳转到我的作业
   homework(e) {
-
+    wx.cloud.callFunction({
+      name: 'createClass',
+      data: {name:"1"},
+      success: res => {
+        console.log(res)
+      }
+    })
   },
   //跳转到下载作业
   download(e) {
@@ -48,10 +54,11 @@ Page({
   },
   getUserInfo: function (e) {
     if (e.detail.userInfo) {
+
       this.add(e.detail.userInfo)
       this.setData({
         isLogin: true,
-        name: e.detail.userInfo.neckName
+        name: e.detail.userInfo.nickName
       })
       app.globalData.login = true
     } else {
@@ -73,12 +80,15 @@ Page({
         phone: '',
         class: ''
       }
-
-
     })
-
+    app.globalData.userInfo = {
+      neckname: e.nickName,
+      sco: '',
+      phone: '',
+      class: ''
+    }
   },
-  
+
   //login 
   login: function (e) {
     if (app.globalData.userInfo) {

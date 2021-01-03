@@ -89,17 +89,19 @@
         <view>
           <text>输入班级邀请码</text>
         </view>
-        
+
         <view class="back">
           <image bindtap="hidenshadow" src="/images/icon/XX.png"></image>
         </view>
       </view>
-      <view class="invate-input">
-        <input type="text" placeholder="请输入班级邀请码" />
-      </view>
-      <view class="invate-button">
-        <button bindtap="confirm">确认加入</button>
-      </view>
+      <form bindsubmit="confirm">
+        <view class="invate-input">
+          <input type="text"name='inviteNum' placeholder="请输入班级邀请码" />
+        </view>
+        <view class="invate-button">
+          <button form-type="submit">确认加入</button>
+        </view>
+      </form>
     </view>
   </view>
 </view>

@@ -3,7 +3,7 @@
     <view id="info" >
       <view wx:if="{{isLogin}}" class="info-items user" >
         <text id="name">{{name}}</text>
-        <text id="classnum">{{class}}</text>
+        <text id="classnum" >{{class}}</text>
       </view>
       <view wx:else class="info-items user">
         <text id="name">{{name}}</text>

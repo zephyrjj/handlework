@@ -1,4 +1,3 @@
-//app.js
 App({
   onLaunch: function () {
     if (!wx.cloud) {
@@ -13,7 +12,8 @@ App({
         traceUser: true,
       })
       this.globalData = {
-        login: false
+        login: false,
+        classdeatil: {}
       }
       this.checkLogin()
     }
@@ -26,39 +26,41 @@ App({
     wx.cloud.callFunction({
       name: 'login',
       data: {},
-      success: res => {
-        user.where({
-          _openid: res.openid
-        }).get({
-          success: res => {
-            console.log(res)
-            if (res.data.length != 0) {
-              this.globalData.userInfo = res.data[0]
-              if (res.data[0].class) {
-                wx.cloud.database().collection('Class').where({
-                  _id: res.data[0].class
-                }).field({
-                  cName: true
-                }).get({
-                  success: res => {
-                    this.globalData.userInfo.cName = res.data[0].cName      
-                  }
-                })
-              }else{
-                this.globalData.userInfo.cName = ''
-              }
+    }).then(async (res) => {
+      await user.where({
+        _openid: res.result.openid
+      }).get().then(async (res) => {
+        {
+          if (res.data.length != 0) {
+            this.globalData.userInfo = res.data[0]
+            if (res.data[0].class) {
+              await wx.cloud.database().collection('Class').where({
+                _id: res.data[0].class
+              }).field({
+                cName: true
+              }).get({
+                success: res => {
+                  console.log(res)
+                  this.globalData.userInfo.cName = res.data[0].cName
+                }
+              })
               if (this.userInfoCallback) { //确保onLaunch比onLoad先执行
                 this.userInfoCallback(this.globalData.userInfo)
               }
             } else {
-              this.globalData.userInfo = 'empty'
-              if (this.userInfoCallback) {
-                this.userInfoCallback('empty');
+              this.globalData.userInfo.cName = ''
+              if (this.userInfoCallback) { //确保onLaunch比onLoad先执行
+                this.userInfoCallback(this.globalData.userInfo)
               }
             }
+          } else {
+            this.globalData.userInfo = 'empty'
+            if (this.userInfoCallback) {
+              this.userInfoCallback('empty');
+            }
           }
-        })
-      }
+        }
+      })
     })
   }
 })

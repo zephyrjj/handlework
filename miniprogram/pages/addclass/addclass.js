@@ -12,41 +12,40 @@ Page({
   formSubmit(e) {
     let classInfo = e.detail.value
     if (classInfo.cname != '' && classInfo.num != '') {
-      db.collection('Class').add({ //添加班级信息到班级集合
+      wx.cloud.callFunction({
+        name: 'createClass',
         data: {
-          cName: classInfo.cname,
-          stuNum: classInfo.num
-        }
-      }).then(res => {
-        console.log(res)
-        let classid = res._id
-        app.globalData.userInfo.class = classid
-        wx.cloud.database().collection('User').doc(app.globalData.userInfo._id).update({ //添加班级的id到个人信息中
-          data: {
-            class: classid
-          }
-        }).then(res => {
-          db.collection('classMember').add({ //向班级成员表添加个人openid以及负责人标记
-            data: {
-              class_id: classid, //班级的id
-              tag: 'H', //H代表管理员，P代表普通学生
-            }
-          }).then(res => {
+          cname: classInfo.cname,
+          num: classInfo.num,
+          _id: app.globalData.userInfo._id
+        },
+        success: res => {
+          if (res.result) {
             app.globalData.userInfo.cName = classInfo.cname
+            app.globalData.userInfo.class = res.result.classid
+            app.globalData.classdeatil.inviteNum = res.result.inviteNum
             wx.showToast({
-              title: '创建成功',
-              icon: 'success'
+              title: '创建成功 ',
+              icon: 'success',
+              duration:2000
             })
+            setTimeout(wx.reLaunch({
+              url: '/pages/myclass/myclass',
+            }),1500
+          ) 
+          }else{
+            wx.showToast({
+              title: '发生了错误请稍后再试',
+              icon: 'none'
+            })
+          }
+        },
+        fail: err => {
+          wx.showToast({
+            title: '发生了错误请稍后再试',
+            icon: 'none'
           })
-        }).catch(err => {
-          console.log(err)
-        })
-      }).catch(err => {
-        console.log(err)
-        wx.showToast({
-          title: '发生了错误请稍后再试',
-          icon: 'none'
-        })
+        }
       })
     } else {
       wx.showToast({
