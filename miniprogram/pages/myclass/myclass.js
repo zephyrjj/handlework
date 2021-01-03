@@ -61,23 +61,86 @@ Page({
   job:'学生',
 }
   ],
-    haveClass:false,
+    haveClass:false,      //判断是否有班级
+    chooseSize:false,     //判断点击更多
+    addclass:false,       //加入班级
+    total:36              //班级总人数
   },
   //加入班级
   add:function(e){
     this.setData({
+      addclass:true
+    })
+  },
+  confirm(){
+    this.setData({
       haveClass:true
     })
-  },  
+  },
+  //叉叉的按钮
+  hidenshadow:function(e){
+    this.setData({
+      addclass:false
+    })
+  },
   //创建班级
   create:function(e){
     wx.navigateTo({
       url: '/pages/addclass/addclass',
     })
   },
-  //更多
+  //更多的按钮
   more:function(e){
-
+    if (this.data.chooseSize == false) {
+      this.showlist();
+    } 
+  },
+  //显示动画函数
+  showlist:function(e){
+    var that = this;
+    var animation = wx.createAnimation({
+    // 动画持续时间
+      duration: 500,
+      timingFunction: 'linear'
+    })
+  // 将该变量赋值给当前动画
+    that.animation = animation
+  // 先在y轴偏移，然后用step()完成一个动画
+    animation.translateY(1000).step()
+    that.setData({
+    // 通过export()方法导出数据
+    animationData: animation.export(),
+    chooseSize: true
+  })
+  //设置延时
+  setTimeout(function () {
+    animation.translateY(0).step()
+    that.setData({
+      animationData: animation.export(),
+      clearcart: false
+    })
+  }, 100)
+  },
+  //隐藏动画函数
+  hidelist:function(e){
+    var that = this;
+    var animation = wx.createAnimation({
+      duration:500,
+      timingFunction:'linear'
+    })
+    that.animation = animation
+    animation.translateY(200).step()
+    that.setData({
+      animationData:animation.export()
+      
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        chooseSize: false
+      })
+    }, 100)
   },
   /**
    * 生命周期函数--监听页面加载

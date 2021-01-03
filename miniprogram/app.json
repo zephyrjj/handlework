@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/handinhomework/handinhomework",
+    "pages/homeworkdetails/homeworkdetails",
     "pages/user/user",
     "pages/myclass/myclass",
     "pages/homework/homework",

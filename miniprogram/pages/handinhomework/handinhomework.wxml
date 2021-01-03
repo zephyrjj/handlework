@@ -5,8 +5,8 @@
         <text id="name">{{name}}</text>
         <text id="classnum">{{class}}</text>
       </view>
-      <view wx:else>
-        
+      <view wx:else class="info-items user">
+        <text id="name">{{name}}</text>
       </view>
       <view class="info-items date">
         <text id="day">{{day}}</text>
@@ -14,25 +14,40 @@
       </view>
     </view>
   </view>
-
+ 
+  <view id="release" bindtap="release">
+   <text>发布作业</text> 
+  </view>
   <view id="bottom">
 
-    <view class="homework-item">
-      <view class="title">
-        <text class="homeworkclass">数据库作业</text>
-        <text>2021年1月1日发布</text>
+    <block wx:for="{{homeworklist}}" wx:key="index">
+      <view class="homework-item" bindtap="details" data-homework="{{item}}">
+        <view class="title">
+          <text class="homeworkclass">{{item.title}}</text>
+          <text>{{item.time}}发布</text>
+        </view>
+        <view class="deadline">
+          <text>提交截止：{{item.deadline}}</text>
+        </view>
+        <view class="content">
+          <text>作业内容:</text>
+          <text>{{item.content}}</text>
+        </view>
+        <view class="number">
+          <view class="submited">
+            <text class="number-item">1</text>
+            <text class="status">已提交</text>
+          </view>
+          <view class="unsubmit">
+            <text class="number-item">9</text>
+            <text class="status">未提交</text>
+          </view>
+        </view>
+        <view class="details" >
+          <text>点击查看作业详情</text>
+        </view>
       </view>
-      <view class="deadline">
-        <text>提交截止：2021年1月2日20：00</text>
-      </view>
-      <view class="content">
-        <text>作业内容:</text>
-        <text>数据库设计报告</text>
-      </view>
-      <view class="details">
-        <text>点击查看作业详情</text>
-      </view>
-    </view>
-
+    </block>
+    
   </view>
 </view>
