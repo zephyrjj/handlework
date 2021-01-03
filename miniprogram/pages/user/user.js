@@ -24,7 +24,9 @@ Page({
   },
   //跳转到我的作业
   homework(e) {
-
+    wx.navigateTo({
+      url: '/pages/homework/homework',
+    })
   },
   //跳转到下载作业
   download(e) {

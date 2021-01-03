@@ -55,8 +55,8 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/myclass/myclass",
-          "pathName": "pages/myclass/myclass",
+          "name": "pages/publish/publish",
+          "pathName": "pages/publish/publish",
           "query": "",
           "scene": null
         },

@@ -1,2 +1,29 @@
-<!--pages/homework/homework.wxml-->
-<text>pages/homework/homework.wxml</text>
+<view id="bottom">
+
+  <block wx:for="{{homeworklist}}" wx:key="index">
+    
+    <view class="homework-item" bindtap="details" data-homework="{{item}}">
+      <image class="pic_background" wx:if="{{isSubmitted==false}}"  src="/images/icon/uncommitted.png"></image>
+      <view class="title">
+        <text class="homeworkclass">{{item.title}}</text>
+        <text>{{item.time}}发布</text>
+        
+      </view>
+
+      <view class="deadline">
+        <text>提交截止：{{item.deadline}}</text>
+      </view>
+      <view class="content">
+        <text>作业内容:</text>
+        <text>{{item.content}}</text>
+      </view>
+
+      <view class="details">
+        <text>点击查看作业详情</text>
+      </view>
+      <image class="submitted" wx:if="{{isSubmitted==true}}" src="/images/icon/submitted.png"></image>
+    </view>
+
+  </block>
+
+</view>

@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="top">
+    <view class="box">
+      <view class="topic">
+        <text>布置作业</text>
+      </view>
+      <view class="border"></view>
+      <view class="box-input">
+        <textarea placeholder="请填写作业内容..." />
+        </view>
+    </view>
+  </view>
+  <view class="middle">
+    <view class="middle-box">
+      <view class="item">
+        <view class="item-name">
+          <text>科目</text>
+        </view>
+        <view class="item-item">
+         <input type="text" placeholder="如：数据库"/>
+        </view>
+      </view>
+      <view class="item">
+        <view class="item-name">
+          <text>提交截止日期</text>
+        </view>
+        <view >
+          <picker mode="multiSelector" value="{{dateTime1}}" bindchange="changeDateTime1" bindcolumnchange="changeDateTimeColumn1" range="{{dateTimeArray1}}">
+     <view class="text">
+      {{dateTimeArray1[0][dateTime1[0]]}}-{{dateTimeArray1[1][dateTime1[1]]}}-{{dateTimeArray1[2][dateTime1[2]]}} {{dateTimeArray1[3][dateTime1[3]]}}:{{dateTimeArray1[4][dateTime1[4]]}}
+     </view>
+</picker>
+        </view>
+      </view>
+      <view class="item">
+        <button  bindtap="submit">确认发布</button>
+      </view>
+    </view>
+  </view>
+</view>

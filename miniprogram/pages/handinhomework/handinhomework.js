@@ -7,9 +7,43 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isLogin: false
+      isLogin:false,
+      homeworklist:[{
+        id:'1',
+        title:'数据库',
+        time:'2021年1月1日',
+        deadline:'2021年1月2日20：00',
+        content:'数据库设计报告'
+      },{
+        id:'2',
+        title:'小程序',
+        time:'2021年1月2日',
+        deadline:'2021年1月3日20：00',
+        content:'音乐小程序'
+      },{
+        id:'3',
+        title:'数据挖掘',
+        time:'2021年1月3日',
+        deadline:'2021年1月4日20：00',
+        content:'数据挖掘报告'
+      }
+    ]
   },
-
+  release(){
+    wx.navigateTo({
+      url: '/pages/publish/publish',
+    })
+    
+  },
+  details(e){
+    wx.navigateTo({
+      url: '/pages/homeworkdetails/homeworkdetails',
+      success: function(res) {
+        // 通过eventChannel向被打开页面传送数据
+        res.eventChannel.emit('acceptDataFromOpenerPage', { data: e.currentTarget.dataset.homework })
+      }
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -47,9 +81,9 @@ Page({
   onShow: function () {
     if (app.globalData.userInfo) {
       this.setData({
-        isLogin: true,
-        name: app.globalData.userInfo.neckname,
-        class: app.globalData.userInfo.cName
+        isLogin:true,
+        name:app.globalData.userInfo.neckname,
+        class:app.globalData.userInfo.cName
       })
     }
   },
@@ -67,7 +101,7 @@ Page({
         return '周五';
       case 6:
         return '周六';
-      case 7:
+      case 0:
         return '周日';
     };
   },

@@ -1,17 +1,20 @@
 {
   "pages": [
     "pages/handinhomework/handinhomework",
+    "pages/homeworkdetails/homeworkdetails",
     "pages/user/user",
     "pages/myclass/myclass",
     "pages/homework/homework",
     "pages/personal/personal",
-    "pages/addclass/addclass"
+    "pages/addclass/addclass",
+    "pages/publish/publish"
+
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffcccc",
-    "navigationBarTitleText": "交作业啊啊啊啊",
+    "navigationBarTitleText": "我爱交作业",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

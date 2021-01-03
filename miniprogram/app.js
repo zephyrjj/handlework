@@ -22,6 +22,7 @@ App({
   checkLogin: function () {
     const db = wx.cloud.database()
     const user = db.collection('User')
+
     wx.cloud.callFunction({
       name: 'login',
       data: {},
@@ -40,10 +41,10 @@ App({
                   cName: true
                 }).get({
                   success: res => {
-                    this.globalData.userInfo.cName = res.data[0].cName      
+                    this.globalData.userInfo.cName = res.data[0].cName
                   }
                 })
-              }else{
+              } else {
                 this.globalData.userInfo.cName = ''
               }
               if (this.userInfoCallback) { //确保onLaunch比onLoad先执行

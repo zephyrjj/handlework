@@ -1,0 +1,18 @@
+<!--pages/homeworkdetails/homeworkdetails.wxml-->
+<view id="container">
+  <view id="homework">
+    <view class="title">
+      <text>{{homework.title}}</text>
+      <text>{{homework.time}}发布</text>
+    </view>
+    <view>
+      <text>提交截止时间：{{homework.deadline}}</text>
+    </view>
+    <view>
+      <text>作业内容：{{homework.content}}</text>
+    </view>
+    <view>
+      提交
+    </view>
+  </view>
+</view>
