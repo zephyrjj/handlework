@@ -10,6 +10,33 @@ Page({
   },
   submit(e){    //提交
     console.log(e.detail.value);
+    let filepaths = this.data.FilePaths;
+    for (let i = 0; i < filepaths.length; i++) {
+      wx.cloud.uploadFile({
+        cloudPath: 'uploadhomework/'+filepaths[i].name,     //将文件存到云存储
+        filePath: filepaths[i].path,
+        success(res){
+          console.log(res.fileID) //将ID存到数据库
+        },
+        fail(res){
+          console.log(res);
+        }
+      });
+    }
+    let srcarray1 = this.data.srcarray;
+    // for (let i = 0; i < srcarray1.length; i++) {
+    //   wx.cloud.uploadFile({
+    //     cloudPath: 'uploadhomework/'+srcarray1[i].name,     //将文件存到云存储
+    //     filePath: srcarray1[i].path,
+    //     success(res){
+    //       console.log(res.fileID) //将ID存到数据库
+    //     },
+    //     fail(res){
+    //       console.log(res);
+    //     }
+    //   });
+    // }
+    
   },
   uploadfile(e){  //选择文件
     var that = this;

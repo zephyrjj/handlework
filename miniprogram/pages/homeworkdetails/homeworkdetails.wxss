@@ -104,7 +104,8 @@ textarea{
   width: 40rpx;
   height: 40rpx;
   position: absolute;
-  right: 10rpx;
+  right: -20rpx;
+  top: -20rpx;
 }
 .uploadfile{
   width: 100%;
