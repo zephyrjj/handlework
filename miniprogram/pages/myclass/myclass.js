@@ -6,71 +6,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-    list: [{
-        sco: '3118003916',
-        name: 'roger',
-        job: '管理员',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      },
-      {
-        sco: '3118003918',
-        name: 'gogo',
-        job: '学生',
-      }
-    ],
-
+    list: [],
     chooseSize: false, //判断点击更多
     addclass: false, //加入班级
-    total: 36 //班级总人数
   },
   //加入班级
   add: function (e) {
     this.setData({
       addclass: true
+    })
+  },
+  //获取班级名单
+  getClassMemberlist(e) {
+    wx.showLoading({
+      title: '请稍等',
+    })
+    wx.cloud.callFunction({
+      name: 'getClassMember',
+      data: {
+        classid: app.globalData.userInfo.class
+      },
+      success: res => {
+        this.setData({
+          list: res.result,
+          total: res.result.length  //班级总人数
+        })
+        wx.hideLoading()
+        wx.stopPullDownRefresh()
+        console.log(res)
+      }
     })
   },
   confirm(e) {
@@ -139,49 +103,49 @@ Page({
     })
   },
   //更多的按钮
-  more:function(e){
+  more: function (e) {
     if (this.data.chooseSize == false) {
       this.showlist();
-    } 
+    }
   },
   //显示动画函数
-  showlist:function(e){
+  showlist: function (e) {
     var that = this;
     var animation = wx.createAnimation({
-    // 动画持续时间
+      // 动画持续时间
       duration: 500,
       timingFunction: 'linear'
     })
-  // 将该变量赋值给当前动画
+    // 将该变量赋值给当前动画
     that.animation = animation
-  // 先在y轴偏移，然后用step()完成一个动画
+    // 先在y轴偏移，然后用step()完成一个动画
     animation.translateY(1000).step()
     that.setData({
-    // 通过export()方法导出数据
-    animationData: animation.export(),
-    chooseSize: true
-  })
-  //设置延时
-  setTimeout(function () {
-    animation.translateY(0).step()
-    that.setData({
+      // 通过export()方法导出数据
       animationData: animation.export(),
-      clearcart: false
+      chooseSize: true
     })
-  }, 100)
+    //设置延时
+    setTimeout(function () {
+      animation.translateY(0).step()
+      that.setData({
+        animationData: animation.export(),
+        clearcart: false
+      })
+    }, 100)
   },
   //隐藏动画函数
-  hidelist:function(e){
+  hidelist: function (e) {
     var that = this;
     var animation = wx.createAnimation({
-      duration:500,
-      timingFunction:'linear'
+      duration: 500,
+      timingFunction: 'linear'
     })
     that.animation = animation
     animation.translateY(200).step()
     that.setData({
-      animationData:animation.export()
-      
+      animationData: animation.export()
+
     })
     setTimeout(function () {
       animation.translateY(0).step()
@@ -191,6 +155,8 @@ Page({
       })
     }, 100)
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -199,6 +165,7 @@ Page({
     this.setData({
       haveClass: classid != '' ? classid : false, //判断是否有班级
     })
+    this.getClassMemberlist()
   },
 
   /**
@@ -235,7 +202,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.getClassMemberlist()
+    
   },
 
   /**

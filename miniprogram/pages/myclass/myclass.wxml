@@ -49,10 +49,10 @@
           <view class="item" wx:for="{{list}}">
             <view class="student">
               <view class="sname">
-                <text>{{item.sco}}-{{item.name}}</text>
+                <text>{{item.detail[0].sco}}-{{item.detail[0].neckname}}</text>
               </view>
               <view class="rank">
-                <text>{{item.job}}</text>
+                <text>{{item.tag=='H'?'负责人':'学生'}}</text>
               </view>
             </view>
             <view class="more" bindtap="more">
