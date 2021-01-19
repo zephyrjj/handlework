@@ -6,6 +6,7 @@ const db = cloud.database()
 
 exports.main = async (event, context) => {
   let list = []
+  let Hnum = null
   await db.collection('classMember')
     .aggregate()
     .match({
@@ -20,15 +21,34 @@ exports.main = async (event, context) => {
     .end()
     .then(res => {
       list = res.list
+
       console.log(res)
     })
-    .catch(err=>{
+    .catch(err => {
       console.log(err)
     })
-     if(list!=[]){
-       return list
-     }else{
-       return 'error'
-     }
+  await db.collection('classMember')
+    .aggregate()
+    .match({
+      class_id: event.classid,
+      tag: 'H'
+    })
+    .count('Hnum')
+    .end()
+    .then(res => {
+      console.log(res)
+      Hnum = res.list[0].Hnum
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  if (list != []) {
+    return {
+      list: list,
+      Hnum: Hnum
+    }
+  } else {
+    return 'error'
+  }
 
 }

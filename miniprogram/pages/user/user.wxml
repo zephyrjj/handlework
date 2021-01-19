@@ -38,7 +38,7 @@
     <image src="/images/icon/homework.png"></image>
     <text>我的作业</text>
   </view>
-  <view class="item" bindtap="download">
+  <view class="item" bindtap="download" wx:if="{{tag=='H'}}">
     <image src="/images/icon/download.png"></image>
     <text>下载作业</text>
   </view>

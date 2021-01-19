@@ -24,9 +24,16 @@ Page({
   },
   //跳转到我的作业
   homework(e) {
-    wx.navigateTo({
-      url: '/pages/homework/homework',
-    })
+    if (app.globalData.classdetail['cName']) {
+      wx.navigateTo({
+        url: '/pages/homework/homework',
+      })
+    }else{
+      wx.showToast({
+        title: '请先加入班级',
+        icon:'none'
+      })
+    }
   },
   //跳转到下载作业
   download(e) {
@@ -94,9 +101,13 @@ Page({
       if (userInfo != "empty") {
         this.setData({
           isLogin: true,
-          name: userInfo.neckname,
-          class: userInfo.cName
+          name: userInfo.neckname
         })
+        if (app.globalData.classdetail['cName']) {
+          this.setData({
+            class: app.globalData.classdetail.cName
+          })
+        }
         app.globalData.login = true
         wx.hideLoading({
           success: (res) => {
@@ -134,7 +145,7 @@ Page({
           this.setData({
             isLogin: true,
             name: userInfo.neckname,
-            class: userInfo.cName
+            class: app.globalData.classdetail.cName
           })
           app.globalData.login = true
           wx.hideLoading({
@@ -182,9 +193,17 @@ Page({
     let userInfo = app.globalData.userInfo
     if (app.globalData.userInfo) {
       this.setData({
-        class: userInfo.cName,
+
         name: userInfo.neckname
       })
+      if (app.globalData.classdetail['cName']) {
+        this.setData({
+          class: app.globalData.classdetail.cName,
+          tag: app.globalData.classdetail.tag
+        })
+      } else {
+        tag: 'P'
+      }
     }
   },
 

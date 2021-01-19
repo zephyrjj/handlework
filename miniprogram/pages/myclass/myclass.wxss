@@ -45,6 +45,17 @@
   font-size: 25px;
   margin:40px
 }
+/* 邀请码*/
+.inviteNum{
+    text-align: center;
+    font-size: x-large;
+    margin: 5rpx;
+}
+
+.inviteNum text{
+  color:#ffcccc;
+  font-weight: bold;
+}
 /*--------加入班级弹窗-----*/
 .add-modal{
   display: flex;
@@ -114,7 +125,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  margin-top: 42px;
 }
 .border{
   display: flex;

@@ -21,7 +21,7 @@ Page({
         },
         success: res => {
           if (res.result) {
-            app.globalData.userInfo.cName = classInfo.cname
+            app.globalData.classdeatil.cName = classInfo.cname
             app.globalData.userInfo.class = res.result.classid
             app.globalData.classdeatil.inviteNum = res.result.inviteNum
             wx.showToast({

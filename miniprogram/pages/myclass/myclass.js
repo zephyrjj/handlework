@@ -9,6 +9,7 @@ Page({
     list: [],
     chooseSize: false, //判断点击更多
     addclass: false, //加入班级
+
   },
   //加入班级
   add: function (e) {
@@ -18,6 +19,8 @@ Page({
   },
   //获取班级名单
   getClassMemberlist(e) {
+    let classdetail = app.globalData.classdetail
+    console.log(app.globalData.classdetail)
     wx.showLoading({
       title: '请稍等',
     })
@@ -28,12 +31,30 @@ Page({
       },
       success: res => {
         this.setData({
-          list: res.result,
-          total: res.result.length  //班级总人数
+          list: res.result.list,
+          membernum: res.result.list.length,
+          Hnum: res.result.Hnum,
+          total: classdetail.stuNum //班级总人数
         })
         wx.hideLoading()
         wx.stopPullDownRefresh()
         console.log(res)
+      }
+    })
+  },
+  //复制邀请码
+  copyText: function (e) {
+    // console.log(e)
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.text,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showToast({
+              title: '复制成功'
+            })
+          }
+        })
       }
     })
   },
@@ -43,45 +64,57 @@ Page({
       db.collection('Class').where({
         inviteNum: inviteNum
       }).get().then(async (res) => {
-        let classdetail = res.data[0]
-        wx.showModal({
-          title: '申请加入',
-          content: '是否加入班级：' + classdetail.cName,
-          success: res => {
-            if (res.confirm) {
-              db.collection('User').doc(app.globalData.userInfo._id).update({
-                data: {
-                  class: classdetail._id
-                }
-              }).then(res => {
-                db.collection('classMember').add({
+        if (res.data.length != 0) {
+          let classdetail = res.data[0]
+          wx.showModal({
+            title: '申请加入',
+            content: '是否加入班级：' + classdetail.cName,
+            success: res => {
+              if (res.confirm) {
+                db.collection('User').doc(app.globalData.userInfo._id).update({
                   data: {
-                    class_id: classdetail._id, //班级的id
-                    tag: 'P', //H代表管理员，P代表普通学生
+                    class: classdetail._id
                   }
                 }).then(res => {
-                  wx.showToast({
-                    title: '加入成功',
-                    icon: 'success',
-                    success: res => {
-                      this.setData({
-                        addclass: false,
-                        haveClass: true
-                      })
-                      app.globalData.userInfo.class = classdetail._id
-                      app.globalData.userInfo.cName = classdetail.cName
+                  db.collection('classMember').add({
+                    data: {
+                      class_id: classdetail._id, //班级的id
+                      tag: 'P', //H代表管理员，P代表普通学生
                     }
+                  }).then(res => {
+                    wx.showToast({
+                      title: '加入成功',
+                      icon: 'success',
+                      success: res => {
+                        app.globalData.userInfo.class = classdetail._id
+                        app.globalData.userInfo.cName = classdetail.cName
+                        this.getClassMemberlist()
+                        this.setData({
+                          addclass: false,
+                          haveClass: true,
+                          cName:classdetail.cName,
+                          total:classdetail.total,
+                          inviteNum:classdetail.inviteNum
+                        })
+                       
+                      }
+                    })
                   })
                 })
-              })
-            } else if (res.cancel) {
-              wx.showToast({
-                title: '已取消',
-                icon: 'none'
-              })
+              } else if (res.cancel) {
+                wx.showToast({
+                  title: '已取消',
+                  icon: 'none'
+                })
+              }
             }
-          }
-        })
+          })
+        } else {
+            wx.showToast({
+              title: '请核实邀请码是否正确',
+              icon:'none'
+            })
+        }
       })
     } else {
       wx.showToast({
@@ -163,9 +196,15 @@ Page({
   onLoad: function (options) {
     const classid = app.globalData.userInfo.class
     this.setData({
-      haveClass: classid != '' ? classid : false, //判断是否有班级
+      haveClass: classid != '' ? classid : false //判断是否有班级
     })
-    this.getClassMemberlist()
+    if (classid) {
+      this.setData({
+        inviteNum: app.globalData.classdetail.inviteNum, //班级邀请码
+        cName:app.globalData.classdetail.cName
+      })
+      this.getClassMemberlist()
+    }
   },
 
   /**
@@ -203,7 +242,7 @@ Page({
    */
   onPullDownRefresh: function () {
     this.getClassMemberlist()
-    
+
   },
 
   /**
